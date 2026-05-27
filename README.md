@@ -192,17 +192,17 @@ Most "prompt templates" are vague platitudes like "be helpful and accurate." Thi
 
 ---
 
-## Repository Structure
+## Repository Structure(Generic Template.md + examples folder 
 
 ```
-├── README.md              ← You are here
-├── TEMPLATE.md            ← The full system instructions template
+├── README.md               ← You are here
+├── TEMPLATE.md             ← The full system instructions template
 ├── examples/
-|   └── veeamGPT.MD        ← Fully customized example for a backup, security and data protection  company
-│   └── cloud-infra.md     ← Fully customized example for a cloud infrastructure company
-│   └── -codingps1md       ← Fully customized example for a ***
-│   └── -yaragenerator.md  ← Fully customized example for a ***
-└── LICENSE                ← MIT License
+|   └── veeamGPT.MD         ← Fully customized example for a backup, security and data protection company
+│   └── cloud-infra.md      ← Fully customized example for a cloud infrastructure company
+│   └── ps1AgentCoder.md    ← Fully customized example for aPower shell Coding Agent
+│   └── yaragenerator.md    ← Fully customized example for a YARA rule generator and bash/batch integrator
+└── LICENSE                 ← MIT License
 ```
 
 ---
@@ -237,6 +237,7 @@ AI agent instructions based on the [Universal AI Agent Safety Template](https://
 
 ## Version History
 
+- **v1.3** (May 2026): Added several new agent instructions under examples/
 - **v1.2** (Dec 2025): Added Azure "on your data" grounding rule, audit logging, normalized formatting
 - **v1.1** (Dec 2025): Added Tool & Data Access, Security & Privacy, ethical guardrails
 - **v1.0** (Dec 2025): Initial public release, based on production deployment at global enterprise software company
