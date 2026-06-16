@@ -1,0 +1,40 @@
+name: CG DevSkim Security Analysis
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '17 9 * * 5'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  devskim:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run DevSkim
+        uses: microsoft/DevSkim-Action@v1
+        with:
+          directory-to-scan: .
+          should-scan-archives: false
+          output-filename: devskim-results.sarif
+          output-directory: ${{ github.workspace }}
+
+      - name: Upload SARIF to Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: devskim-results.sarif
