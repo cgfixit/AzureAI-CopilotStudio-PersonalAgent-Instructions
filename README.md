@@ -17,6 +17,7 @@ The MIT License applies only to:
   • /examples/cloud-infra.md
   • /examples/ps1AgentCoder.md
   • /examples/yaragenerator.md
+  • /examples/incident-response.md
 
 All other files
 (including **veeam-specific** /examples )
@@ -202,6 +203,7 @@ Most "prompt templates" are vague platitudes like "be helpful and accurate." Thi
 ├── TEMPLATE.md                    ← The full system instructions template
 ├── examples/
 │   ├── cloud-infra.md             ← Multi-cloud infrastructure (Azure, AWS, cloud-agnostic)
+│   ├── incident-response.md       ← DevOps incident response & SRE runbooks/postmortems
 │   ├── Network&SecurityAgent.md   ← Network & security engineering (Azure OpenAI o3 optimized)
 │   ├── ps1AgentCoder.md           ← PowerShell coding agent (PS 5.1 + 7+)
 │   ├── pythonAgentCoder.md        ← Python coding agent (3.12+)
@@ -242,6 +244,7 @@ AI agent instructions based on the [Universal AI Agent Safety Template](https://
 
 ## Version History
 
+- **v1.5** (Jun 2026): Added `examples/incident-response.md` (DevOps incident response & SRE) via `/azureAI-optimize`
 - **v1.4** (Jun 2026): Added o3 Reasoning Protocol to TEMPLATE.md and all examples; added missing Escalation/Security sections; added CI workflows (placeholder-audit, markdown-lint, link-check); security hardening (Dependabot, CODEOWNERS, .gitattributes); fixed README structure and license filename drift
 - **v1.3** (May 2026): Added several new agent instructions under examples/
 - **v1.2** (Dec 2025): Added Azure "on your data" grounding rule, audit logging, normalized formatting

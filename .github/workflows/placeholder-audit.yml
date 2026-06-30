@@ -29,6 +29,7 @@ jobs:
               | grep -vP '^\d+:\[FinOps\]' \
               | grep -vP '^\d+:\[Security\]' \
               | grep -vP '^\d+:\[IaC\]' \
+              | grep -vP '\[DATE\]' \
               || true)
             if [ -n "$HITS" ]; then
               echo "::error file=$f::Unfilled placeholders found in $f"

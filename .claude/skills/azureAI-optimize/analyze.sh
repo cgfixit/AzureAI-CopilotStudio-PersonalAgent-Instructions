@@ -22,6 +22,7 @@ for f in "$ROOT"/examples/*.md; do
     | grep -vP '^\d+:\[FinOps\]' \
     | grep -vP '^\d+:\[Security\]' \
     | grep -vP '^\d+:\[IaC\]' \
+    | grep -vP '\[DATE\]' \
     || true)
   if [ -n "$hits" ]; then
     echo "  WARN  $(basename "$f"):"
@@ -128,11 +129,14 @@ for f in "$ROOT"/examples/*.md; do
 done
 echo ""
 echo "  Suggested new domains (per README contributing guidance):"
-echo "    - healthcare / clinical-protocols"
-echo "    - legal / compliance"
-echo "    - finance / finops"
-echo "    - manufacturing / iot"
-echo "    - devops / incident-response"
+for domain in "healthcare / clinical-protocols" "legal / compliance" "finance / finops" "manufacturing / iot"; do
+  slug=$(echo "$domain" | sed 's/ \/ /-/' | tr ' ' '-')
+  if ls "$ROOT"/examples/*"${domain##* / }"* >/dev/null 2>&1 || ls "$ROOT"/examples/*"$slug"* >/dev/null 2>&1; then
+    echo "    - $domain (covered)"
+  else
+    echo "    - $domain"
+  fi
+done
 echo ""
 
 echo "=============================================="

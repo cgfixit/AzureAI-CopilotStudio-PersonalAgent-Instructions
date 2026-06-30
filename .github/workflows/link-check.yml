@@ -19,6 +19,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run lychee link checker
+        # Non-blocking: external links rot over time (moved docs, bot-blocking
+        # sites like Reddit/Azure portal) independent of any given PR's diff.
+        # Report findings without gating merges on inherited link drift.
+        continue-on-error: true
         uses: lycheeverse/lychee-action@v2
         with:
           args: --verbose --no-progress '*.md' 'examples/*.md'
