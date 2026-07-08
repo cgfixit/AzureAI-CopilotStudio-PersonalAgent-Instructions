@@ -83,7 +83,7 @@ After making changes, run validation:
 bash .claude/skills/azureAI-optimize/analyze.sh .
 ```
 
-Also run `/validate-template` to check placeholder integrity and structural completeness.
+Also run `/preflight` (`bash .claude/skills/preflight/check.sh .`) — the local mirror of every blocking CI gate — and get exit 0.
 
 Confirm:
 - No new unfilled placeholders introduced
@@ -98,7 +98,7 @@ Commit with a descriptive message summarizing which optimization categories were
 ## Gotchas
 
 - **TEMPLATE.md placeholders must stay unfilled** — it is the generic source. Only examples get filled in.
-- **Licensing scope** — MIT covers only `TEMPLATE.md`, `cloud-infra.md`, `ps1AgentCoder.md`, and `yaragenerator.md`. New examples default to MIT-covered unless they reference proprietary products (like the Veeam example). Update the README license block accordingly.
+- **Licensing scope** — MIT covers only `TEMPLATE.md`, `cloud-infra.md`, `ps1AgentCoder.md`, `yaragenerator.md`, and `incident-response.md` (the README license block is the single authority). New examples default to MIT-covered unless they reference proprietary products (like the Veeam example). Update the README license block accordingly.
 - **Gitleaks scans full history** — never commit real-looking secrets, even in examples. Use obviously fake values (`your-api-key-here`, `support@example.com`).
-- **The `Network&SecurityAgent.md` has unfilled placeholders** (`[INTERNAL_ESCALATION_ALIAS]`, `[TICKET_TEMPLATE_ID]` at line 294) — these are real bugs to fix.
-- **README filename drift** — the README license block references `ps1CodingAgent.md` but the actual file is `ps1AgentCoder.md`. Reconcile when touching either.
+- **The placeholder audit has a blind spot** — `veeamGPT.md` uses non-bracket sanitization tokens (`#REDACTED.com` URLs, `PLACHOLDER.storylane.io`, `REDACTED@REDACTED.com`) that the `[UPPER_SNAKE]` regex cannot see. These are *intentional* redactions in a reference-only file: do not "fix" them, and do not imitate the pattern in new examples.
+- **Before acting on any factual claim in this Gotchas list, re-verify it against the tree** (grep/ls) — earlier revisions of this list described already-fixed bugs as live, and stale meta-guidance causes bad edits.
