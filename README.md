@@ -13,7 +13,7 @@ License
 -------
 
 The MIT License applies only to:
-  • /template.md
+  • /TEMPLATE.md
   • /examples/cloud-infra.md
   • /examples/ps1AgentCoder.md
   • /examples/yaragenerator.md
@@ -46,11 +46,11 @@ Designed for real-world deployment in **Azure AI Studio**, **OpenAI Assistants A
 | ⚖️ **Compliance** | Built-in HIPAA/GDPR/SOC2 escalation protocols |
 
 **Battle-tested:** v1.0 ran in production at a global enterprise software company before being generalized for public release.
-**Specific use cases in addition to template.md**
-- veeamgpt.md
-(Veeam Software) 
-- multi-cloud-infra.md
-(Multi-Cloud - Azure, Aws, etc)
+**Specific use cases in addition to TEMPLATE.md**
+- veeamGPT.md
+(Veeam Software)
+- cloud-infra.md
+(Multi-Cloud - Azure, AWS, etc)
 ---
 
 ## Quick Start
@@ -196,7 +196,7 @@ Most "prompt templates" are vague platitudes like "be helpful and accurate." Thi
 
 ---
 
-## Repository Structure(Generic Template.md + examples folder 
+## Repository Structure (generic TEMPLATE.md + examples folder)
 
 ```
 ├── README.md                      ← You are here

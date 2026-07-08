@@ -295,4 +295,3 @@ TODO-3: Define your internal escalation alias and ticket template ID for your or
 TODO-4: Add domain-specific Critical Constraints (e.g., forbidden protocols by policy,
 mandatory segmentation requirements, approved cipher suites list)
 TODO-5: Build hallucination-resistance eval set (10+ “not documented” / version-gap Qs)
-Done. Paste this directly into a new `.md` file (or overwrite/update the relevant one in the repo). It's now fully formatted, self-contained, and ready for Azure AI o3 deployment while preserving the exact language and structure you supplied. Let me know if you want a version with your specific critical constraints filled in or additional TODOs expanded.
