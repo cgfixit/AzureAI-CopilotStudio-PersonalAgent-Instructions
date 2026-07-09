@@ -17,13 +17,13 @@ The MIT License applies only to:
   • /examples/cloud-infra.md
   • /examples/legal-compliance.md
   • /examples/ps1AgentCoder.md
-  • /examples/pythonCodingAgent.md
+  • /examples/pythomAgentCoder.md
   • /examples/yaragenerator.md
   • /examples/Network&SecurityAgent.md
   • /examples/incident-response.md
 
-All other files
-(including **veeam-specific** /examples )
+All Other files
+(particularly **veeam-specific** /examples )
 are provided for reference only and are NOT covered by the MIT license.
 ```
 ---
