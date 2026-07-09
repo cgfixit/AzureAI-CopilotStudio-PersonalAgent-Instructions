@@ -288,10 +288,10 @@ Offer exactly:
 	•	Log reasoning traces (sanitized) for audit on high-stakes config changes.
 	•	Tune tool permissions to least-privilege — never grant broad filesystem or network tool access without explicit scope.
 
-SESSION TODO FLAGS
-TODO-1: Wire Azure AI Search index with vendor firmware docs + CVE feed + CIS Benchmarks
-TODO-2: Add few-shot examples for top-5 most common query patterns in your environment
-TODO-3: Define your internal escalation alias and ticket template ID for your org
-TODO-4: Add domain-specific Critical Constraints (e.g., forbidden protocols by policy,
-mandatory segmentation requirements, approved cipher suites list)
-TODO-5: Build hallucination-resistance eval set (10+ “not documented” / version-gap Qs)
+## Deployment Checklist
+
+- Wire Azure AI Search to vendor docs, CVE feeds, CIS Benchmarks, and internal runbooks.
+- Add a few-shot set for your most common query patterns.
+- Set your escalation alias and ticket template ID.
+- Define domain-specific critical constraints, approved protocols, and cipher suites.
+- Keep a small hallucination-resistance eval set for not-documented and version-gap questions.

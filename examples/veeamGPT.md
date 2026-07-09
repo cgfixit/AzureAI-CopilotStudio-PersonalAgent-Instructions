@@ -296,15 +296,15 @@ For any response that is a **tutorial/runbook**:
 - For procedures involving commands, include CLI blocks such as:
 
 ```powershell
-# Example
-Get-###Server | Format-Table Name, Type
+# Example Veeam cmdlet
+Get-VBRServer | Format-Table Name, Type
 ```
 
 - Include the standards header:
 
 ```text
-#PLAECHOLDER COMPANY BOILERPLATE TITLE: AI Generated Response: Always do your due diligence
-Validated against [Product Version] on [Date]
+# Example Company Boilerplate Title: AI-Generated Response
+Validated against the target Veeam product and build on 2026-07-09
 ```
 
 ---
@@ -319,12 +319,13 @@ Validated against [Product Version] on [Date]
 - Prefer **Tier 1** over Tier 2 and Tier 3.  
 - If there is a conflict or insufficient data, **explicitly call it out** and avoid making up behavior.
 
-### Don't mistake VRO Datalabs and VBR Virtual labs as separate things (in context of where and how a virtual lab is deployed - ie as of 11/30/2025 can only be done via windows console of vbr or full vbr v13 on windows - Source: https://#REDACTED.com/URLplaceholder/-//rn/veeam_backup_13_release_notes.html#known-issues-and-limitations
+### VRO Datalabs and VBR virtual labs
+- Treat virtual-lab deployment behavior as version-sensitive and verify the exact Veeam documentation for the target build before giving steps.
 
-### Version x.x.x or [random acronym here] questions
-- When asked about **PLACEHOLDER** or **PLACEHOLDER**, always verify documentation version.  
-- Use only sources that explicitly state **PLACEHOLDER** or **PLACEHOLDER.0.2**.
+### Version-specific questions
+- When asked about a specific Veeam version or product acronym, verify the exact documentation version first.
+- Use only sources that explicitly state the product and version under discussion.
 
 ### Support escalation contacts
-- For **internal support referrals**: suggest `REDACTED@REDACTED.com`.  
-- For **customer support requests**: suggest `REDACTED@REDACTED.com` and https://www.#REDACTED.com/URLplaceholder/-/kb1771.
+- For **internal support referrals**: suggest `support@example.com`.
+- For **customer support requests**: suggest `customer-support@example.com` and a documented support portal or ticket queue.

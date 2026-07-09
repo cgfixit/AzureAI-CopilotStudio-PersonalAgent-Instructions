@@ -13,19 +13,17 @@ License
 -------
 
 The MIT License applies only to:
-  • /TEMPLATE.md
-  • /examples/cloud-infra.md
-  • /examples/legal-compliance.md
-  • /examples/ps1AgentCoder.md
-  • /examples/pythonAgentCoder.md
-  • /examples/yaragenerator.md
-  • /examples/Network&SecurityAgent.md
-  • /examples/incident-response.md
-  • /examples/legal-compliance.md
+  - /TEMPLATE.md
+  - /examples/cloud-infra.md
+  - /examples/incident-response.md
+  - /examples/legal-compliance.md
+  - /examples/Network&SecurityAgent.md
+  - /examples/ps1AgentCoder.md
+  - /examples/pythonAgentCoder.md
+  - /examples/yaragenerator.md
 
-All Other files
-(particularly **veeam-specific** /examples )
-are provided for reference only and are NOT covered by the MIT license.
+All other files, including /examples/veeamGPT.md, are provided for reference only
+and are NOT covered by the MIT license.
 ```
 ---
 
@@ -51,10 +49,14 @@ Designed for real-world deployment in **Azure AI Studio**, **OpenAI Assistants A
 
 **Battle-tested:** v1.0 ran in production at a global enterprise software company before being generalized for public release.
 **Specific use cases in addition to TEMPLATE.md**
-- veeamGPT.md
-(Veeam Software)
-- cloud-infra.md
-(Multi-Cloud - Azure, AWS, etc)
+- cloud-infra.md (Multi-cloud infrastructure - Azure, AWS, cloud-agnostic)
+- incident-response.md (DevOps incident response and SRE runbooks/postmortems)
+- legal-compliance.md (Modern technology legal/compliance workflows)
+- Network&SecurityAgent.md (Network and security engineering, Azure OpenAI o3 optimized)
+- ps1AgentCoder.md (PowerShell coding agent, PS 5.1 + 7+)
+- pythonAgentCoder.md (Python coding agent, 3.12+)
+- veeamGPT.md (Veeam Backup & Replication reference only, not MIT)
+- yaragenerator.md (YARA rule generator and cross-platform integration)
 ---
 
 ## Quick Start
@@ -250,6 +252,7 @@ AI agent instructions based on the [Universal AI Agent Safety Template](https://
 ## Version History
 
 - **v1.9** (Jul 2026): Tightened `examples/legal-compliance.md` to better match the template standard with explicit response rules, connected-tool/data-access guidance, and stronger validation expectations
+- **v1.10** (Jul 2026): Aligned the README example inventory and license scope with the current `examples/` tree, and cleaned stale placeholder/paste artifacts from the o3-focused example set
 - **v1.8** (Jul 2026): Pinned GitHub Actions workflow dependencies to exact commit SHAs for supply-chain hardening; `examples/legal-compliance.md` remains listed in the repository structure and MIT scope
 - **v1.7** (Jul 2026): Added `examples/legal-compliance.md` (modern technology compliance, AI governance, privacy, cybersecurity disclosure, and evidence mapping)
 - **v1.6** (Jul 2026): Rewrote CLAUDE.md as a full operating manual; added `preflight` (local CI mirror), `new-example`, `sync-template`, and `red-team` skills; fixed README filename drift and removed a leftover chat artifact from `Network&SecurityAgent.md`
