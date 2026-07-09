@@ -13,7 +13,7 @@ there is no app runtime, package manager, or unit-test suite.
 1. Run the analyzer:
 
 ```bash
-bash .codex/skills/azureai-optimize/analyze.sh .
+python .codex/scripts/repo_audit.py analyze .
 ```
 
 2. Pick the smallest justified fix from the findings.
@@ -23,7 +23,7 @@ bash .codex/skills/azureai-optimize/analyze.sh .
 6. Run preflight before committing:
 
 ```bash
-bash .codex/skills/preflight/check.sh .
+python .codex/scripts/repo_audit.py preflight .
 ```
 
 ## Guardrails
@@ -34,3 +34,6 @@ bash .codex/skills/preflight/check.sh .
   language without explicit owner approval.
 - Use Ponytail discipline: one small improvement per PR unless the fixes are tightly
   coupled.
+
+The shell analyzer remains at `.codex/skills/azureai-optimize/analyze.sh` for Unix
+users, but the Python audit entrypoint above is the Codex default.

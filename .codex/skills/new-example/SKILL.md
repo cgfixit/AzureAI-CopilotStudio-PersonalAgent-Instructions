@@ -24,7 +24,7 @@ Use this when adding a new domain-specific agent instruction file.
 7. Run:
 
 ```bash
-bash .codex/skills/preflight/check.sh .
+python .codex/scripts/repo_audit.py preflight .
 ```
 
 ## Guardrails

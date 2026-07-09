@@ -8,7 +8,7 @@ description: Run the local CI mirror before commits that touch Markdown or promp
 Run this before every commit that changes Markdown prompt content:
 
 ```bash
-bash .codex/skills/preflight/check.sh .
+python .codex/scripts/repo_audit.py preflight .
 ```
 
 Exit 0 means the local blocking checks passed. Fix failures in content, not in the
@@ -23,3 +23,6 @@ checker, unless the owner explicitly approved a contract change.
 - No obvious secret-shaped strings
 - README and `examples/` stay synchronized
 - Markdown lint is informational, matching CI policy
+
+The legacy shell mirror still exists at `.codex/skills/preflight/check.sh` for Unix
+users, but the Python entrypoint above is the Codex default.
