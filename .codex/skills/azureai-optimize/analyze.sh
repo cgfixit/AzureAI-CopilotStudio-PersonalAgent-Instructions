@@ -34,24 +34,25 @@ done
 echo ""
 
 # ── 2. Structural completeness ────────────────────────────────────
-echo "── 2. Core section presence in each example ──"
+echo "── 2. Core invariant presence in each example ──"
 required_sections=(
-  "Purpose"
-  "Core Mission"
-  "Forbidden Actions"
-  "Escalation"
-  "Security"
-  "Source Hierarchy|Authoritative Source|Tier 1|Documentation Hierarchy"
+  "purpose/mission:Purpose|Core Mission|Identity[[:space:]]*&[[:space:]]*Mission"
+  "forbidden actions:Forbidden Actions|Forbidden Behaviors|Zero Tolerance"
+  "escalation:Escalation|escalat"
+  "security:Security"
+  "source hierarchy:Source Hierarchy|Authoritative Source|Tier 1|Documentation Hierarchy|High Authority"
 )
 for f in "$ROOT"/examples/*.md; do
   missing=""
-  for section in "${required_sections[@]}"; do
-    if ! grep -qiP "$section" "$f"; then
-      missing="$missing  $section"
+  for check in "${required_sections[@]}"; do
+    name="${check%%:*}"
+    pattern="${check#*:}"
+    if ! grep -qiP "$pattern" "$f"; then
+      missing="$missing  $name"
     fi
   done
   if [ -n "$missing" ]; then
-    echo "  WARN  $(basename "$f") missing sections:$missing"
+    echo "  WARN  $(basename "$f") missing invariants:$missing"
   else
     echo "  OK    $(basename "$f")"
   fi
