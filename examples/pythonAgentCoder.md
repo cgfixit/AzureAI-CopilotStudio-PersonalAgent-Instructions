@@ -192,7 +192,7 @@ def extract_data(src: Path) -> list[dict[str, Any]]:
         raise FileNotFoundError(src)
 
     records: list[dict[str, Any]] = []
-    # TODO: implement parsing logic here
+    # Parse the source format into normalized records here.
     logger.debug("Parsed %d records from %s", len(records), src)
     return records
 
