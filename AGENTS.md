@@ -16,6 +16,8 @@ content in `TEMPLATE.md` and `examples/*.md`.
   repository structure, license scope, and version history.
 - `.github/workflows/` contains the CI gates and non-blocking prose checks.
 - `.codex/skills/` contains Codex-native workflows converted from `.claude/skills/`.
+- `.codex/commands/` contains lightweight repo-local command notes for the main
+  Codex entrypoints.
 - `.claude/skills/` remains for Claude users; do not edit it unless the change is
   intentionally cross-agent.
 
@@ -30,7 +32,14 @@ content in `TEMPLATE.md` and `examples/*.md`.
 6. Before committing Markdown changes, run:
 
 ```bash
-bash .codex/skills/preflight/check.sh .
+python .codex/scripts/repo_audit.py preflight .
+```
+
+7. After cloning the repo or changing `.codex/` or workflow files, verify the
+   repo-local Codex setup with:
+
+```bash
+python .codex/scripts/repo_audit.py verify-codex .
 ```
 
 ## Safety Rules

@@ -26,7 +26,7 @@ git diff $(git merge-base HEAD origin/main) -- TEMPLATE.md
 7. Run:
 
 ```bash
-bash .codex/skills/preflight/check.sh .
+python .codex/scripts/repo_audit.py preflight .
 ```
 
 ## Guardrails
