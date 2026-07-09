@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
 
       - name: Run markdownlint
         # Non-blocking: this repo's pre-existing prose (README/TEMPLATE/examples)
@@ -22,7 +22,7 @@ jobs:
         # unrelated to any given PR's diff. Report findings without gating merges
         # until the baseline is cleaned up deliberately.
         continue-on-error: true
-        uses: DavidAnson/markdownlint-cli2-action@v24
+        uses: DavidAnson/markdownlint-cli2-action@fa017d9f059acc0a1f6d0711a36d3a50acea73cd
         with:
           globs: |
             *.md
