@@ -21,6 +21,7 @@ The MIT License applies only to:
   • /examples/yaragenerator.md
   • /examples/Network&SecurityAgent.md
   • /examples/incident-response.md
+  • /examples/legal-compliance.md
 
 All Other files
 (particularly **veeam-specific** /examples )
