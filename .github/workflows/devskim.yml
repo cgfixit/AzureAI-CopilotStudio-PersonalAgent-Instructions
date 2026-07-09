@@ -21,16 +21,16 @@ jobs:
       security-events: write
       actions: read
 
-    # checkout@v4 and upload-sarif@v3 use Node.js 20; allow until updated
+    # The pinned checkout and upload-sarif releases still use Node.js 20; allow until updated.
     env:
       ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
 
       - name: Run DevSkim
-        uses: microsoft/DevSkim-Action@v1
+        uses: microsoft/DevSkim-Action@4b5047945a44163b94642a1cecc0d93a3f428cc6
         with:
           directory-to-scan: .
           should-scan-archives: false
@@ -41,7 +41,7 @@ jobs:
           output-directory: '.'
 
       - name: Upload SARIF to Code Scanning
-        uses: github/codeql-action/upload-sarif@v4
+        uses: github/codeql-action/upload-sarif@1ad29ea4a422cce9a242a9fae469541dcd08addc
         if: always()
         with:
           sarif_file: devskim-results.sarif
