@@ -17,8 +17,9 @@ The MIT License applies only to:
   • /examples/cloud-infra.md
   • /examples/legal-compliance.md
   • /examples/ps1AgentCoder.md
+  • /examples/pythonCodingAgent.md
   • /examples/yaragenerator.md
-  • /examples/Network&Security.md
+  • /examples/Network&SecurityAgent.md
   • /examples/incident-response.md
 
 All other files
