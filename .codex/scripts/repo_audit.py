@@ -131,6 +131,18 @@ def find_placeholders(path: Path) -> list[str]:
     return hits
 
 
+def readme_consistency_issues(root: Path) -> list[str]:
+    issues: list[str] = []
+    readme_text = read_text(root / "README.md")
+    for path in example_files(root):
+        if path.name not in readme_text:
+            issues.append(f"README.md does not mention {path.name} (Repository Structure block out of sync)")
+    for name in sorted(set(README_NAME_RE.findall(readme_text))):
+        if not (root / name).exists() and not (root / "examples" / name).exists():
+            issues.append(f"README.md references '{name}' but no such file exists (root or examples/)")
+    return issues
+
+
 def run_preflight(root: Path) -> int:
     report = Reporter()
 
@@ -208,17 +220,11 @@ def run_preflight(root: Path) -> int:
         report.pass_("no secret-shaped strings")
 
     print("\n-- C6. README consistency (sync triangle) --")
-    readme_text = read_text(root / "README.md")
-    c6_bad = False
-    for path in example_files(root):
-        if path.name not in readme_text:
-            report.fail(f"README.md does not mention {path.name} (Repository Structure block out of sync)")
-            c6_bad = True
-    for name in sorted(set(README_NAME_RE.findall(readme_text))):
-        if not (root / name).exists() and not (root / "examples" / name).exists():
-            report.fail(f"README.md references '{name}' but no such file exists (root or examples/)")
-            c6_bad = True
-    if not c6_bad:
+    c6_issues = readme_consistency_issues(root)
+    if c6_issues:
+        for issue in c6_issues:
+            report.fail(issue)
+    else:
         report.pass_("README, examples/ and license block agree")
 
     print("\n-- C7. Markdown lint (informational) --")
@@ -292,11 +298,12 @@ def run_analyze(root: Path) -> int:
             print(f"  ENHANCE  {path.name} - no o3 reasoning protocol found")
 
     print("\n-- 4. README <-> examples/ consistency --")
-    readme_text = read_text(root / "README.md")
-    for path in example_files(root):
-        if path.name not in readme_text:
-            print(f"  WARN  {path.name} not listed in README.md")
-    print("  (Manual check: verify README license scope block filenames match actual files)")
+    readme_issues = readme_consistency_issues(root)
+    if readme_issues:
+        for issue in readme_issues:
+            print(f"  WARN  {issue}")
+    else:
+        print("  OK    README and examples are synchronized")
 
     print("\n-- 5. CI workflows --")
     workflows = sorted((root / ".github" / "workflows").glob("*.yml"))
