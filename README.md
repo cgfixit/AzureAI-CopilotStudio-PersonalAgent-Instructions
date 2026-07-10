@@ -1,7 +1,7 @@
 # Universal AI Agent Safety Instructions
 (With specific examples)
 
-> Production-tested (at current employer due to default GPT o3 hallucinating when connected to internet) Template and <a href="https://github.com/cgfixit/AzureAI-CopilotStudio-PersonalAgent-Instructions/tree/main/examples"/examples folder with 8+ personal agent instructions verified and tuned for o3 but can be generalized (I use the TEMPLATE.md as a project/space file in perplexity to noticeable improvement) Personal agent template instructions w/ examples for enterprise/all companies and people using AI agents that prioritize accuracy, version-control, and anti-hallucination safeguards. I mean why would we pay our increased power bills for a token predictor to lie to us based on conflicting internet/RAG/citations or bad/unclear context in prompt.
+> Production-tested (at current employer due to default GPT o3 hallucinating when connected to internet) Template and <a href="https://github.com/cgfixit/AzureAI-CopilotStudio-PersonalAgent-Instructions/tree/main/examples"> /examples folder</a> with 8+ personal agent instructions verified and tuned for o3 but can be generalized (I use the template.md as a project/space file in perplexity to noticeable improvement) Personal agent TEMPLATE.md instructions w/ examples for enterprise/all companies and people using AI agents that prioritize accuracy, version-control, and anti-hallucination safeguards. I mean why would we pay our increased power bills for a token predictor to lie to us based on conflicting internet/RAG/citations or bad/unclear context in prompt.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Azure AI/ MS Copilot Studio](https://img.shields.io/badge/Azure%20AI-Compatible-0078D4)](https://azure.microsoft.com/en-us/products/ai-services/openai-service)
@@ -16,7 +16,7 @@ The MIT License applies only to:
   - /examples/cloud-infra.md
   - /examples/incident-response.md
   - /examples/legal-compliance.md
-  - /examples/Network&SecurityAgent.md
+  - /examples/network&securityAgent.md
   - /examples/ps1AgentCoder.md
   - /examples/pythonAgentCoder.md
   - /examples/yaragenerator.md
@@ -177,26 +177,87 @@ Most "prompt templates" are vague platitudes like "be helpful and accurate." Thi
 **User:** "How do I enable backup encryption in v4.0?"  
 **Agent:**
 ```markdown
-### Enable Backup Encryption in Product X v4.0 ###
-**Purpose**: Secure backup data at rest with AES-256 encryption.
-**Validated against**: Product X v4.0.2 (Build 4518) – Dec 18, 2025
+Veeam Confidential – Internal Use Only (Unless you confirm or test in a lab first)
+Validated against Veeam Backup for AWS v4.0 (archived documentation) on 10 Jul 2026
 
-**Requirements**
-- Product X v4.0.2 or later
-- Administrator role
-- Valid encryption key or certificate
-- ⚠️ Warning: Encryption cannot be disabled after initial backup without data loss
+Enable Encryption on an Amazon S3 Backup Repository (VB-AWS v4.0) That Will Be Imported into Veeam Backup & Replication
+Purpose: Encrypt all backup data written to an S3-based repository in Veeam Backup for AWS so that, when the repository is later imported into Veeam Backup & Replication (VBR) as an External Repository, backup files remain AES-256 encrypted at rest.
 
-**Procedure**
-1. Navigate to Settings > Backup Jobs > [Job Name] → expected: Job configuration panel opens
-   > ✅ Checkpoint: "Advanced Settings" tab is visible
-2. Click "Advanced Settings" → select "Encryption" → expected: Encryption configuration dialog
-   [Image: Encryption_Dialog_v4.0]
-   🔧 Troubleshooting: If grayed out, verify Administrator role in Access Control
+Requirements
+• Veeam Component: Veeam Backup for AWS 4.0 appliance already deployed and accessible via its web UI
+• Permissions: VB-AWS administrator role (to add/edit repositories) and an AWS IAM role/user that can:
+– Read/Write the target S3 bucket/folder
+– Encrypt/Decrypt with the chosen AWS KMS key (if using KMS)
+• Repository target: Existing or new Amazon S3 bucket/folder
+• If KMS encryption is chosen: Symmetric CMK created in the SAME AWS Region as the bucket
+• VBR 12 or later with the “External Repository” feature (read-only) enabled to consume the backups
+
+Procedure
+
+Open the VB-AWS management console → Configuration (menu) → Backup Repositories.
+Click Add Repository.
+
+Step 1 – Repository Name
+• Enter a descriptive Name (e.g., “S3-Prod-Enc”).
+⚠️ [Checkpoint] — Wizard advances with no validation errors.
+
+Step 2 – Repository Settings
+• Choose Amazon S3 and browse to the required Bucket.
+• Select Create new folder or pick an existing folder.
+⚠️ [Checkpoint] — Bucket and folder appear in the path field.
+
+Step 3 – Worker & Performance (accept defaults or tune as per design).
+⚠️ [Checkpoint] — Worker settings saved.
+
+Step 4 – Encryption
+
+Click Edit Encryption Settings.
+Toggle Enable encryption → On.
+Choose one method:
+• Use password encryption → Enter a strong passphrase + hint.
+• Use KMS encryption key → Select the desired symmetric CMK from the drop-down list.
+![⚠️Warning] IAM role specified for the repository must have kms:Encrypt, kms:Decrypt, kms:GenerateDataKey*, kms:DescribeKey on that CMK.
+Confirm and close the dialog.
+⚠️ [Checkpoint] — “Encryption: Enabled” is displayed in the wizard summary.
+Step 5 – Finish
+• Review the summary → Finish.
+• Wait for the “Backup repository successfully created” status.
+⚠️ [Checkpoint] — New repository shows “Encrypted” column = Yes.
+
+Update or create Backup Policies
+• Edit existing policies (or create new ones) and point them to the newly encrypted repository.
+• Save and run the policy to produce encrypted backup chains.
+
+Import into Veeam Backup & Replication (optional)
+• In VBR, open Inventory → External Repositories → Add Repository.
+• Provide VB-AWS appliance address and credentials.
+• Select the encrypted repository; VBR will prompt for the same password or detect the KMS key automatically (if VBR proxy has IAM permissions).
+⚠️ [Checkpoint] — Repository appears under External Repositories; backups are listed but remain encrypted at rest.
+
+![Troubleshooting]
+• “KMS key not found” — Verify CMK Region and IAM permissions (kms:ListKeys, kms:DescribeKey).
+• Policy fails with “AccessDeniedException: KMS” — Ensure the CMK is enabled and not in PendingDeletion state.
+• Forgot the password? — Data is unrecoverable without the original password; open a Support ticket but be prepared for destructive re-seeding.
+
+Frequently Asked Questions
+Q: Can I turn encryption on later for an existing, non-encrypted repository?
+A: Yes. Edit the repository → Encryption → Enable and run new backups. Existing unencrypted files stay unencrypted; only new backup chains use encryption. (Ref: “Editing Backup Repository Settings”)
+
+Q: Does VBR need the password every time?
+A: Only once per console session. VBR caches the key in RAM for that session.
+
+Q: Is client-side encryption compatible with S3 Server-Side Encryption?
+A: Yes; VB-AWS performs its own AES-256 encryption before sending data to S3, regardless of any server-side encryption you may have enabled at the bucket level.
 
 **Verification**
 - PowerShell: `Get-BackupJob -Name "JobName" | Select EncryptionEnabled` → should return `True`
 - Event ID 1234 in Application log: "Encryption enabled for job [JobName]"
+
+Sources:
+Veeam Help Center – “Step 4. Enable Data Encryption” (Veeam Backup for AWS 4.0)
+https://helpcenter.veeam.com/archive/vbaws/40/guide/repositories_add_encryption.html
+Veeam Help Center – “Backup Repository Encryption” (Veeam Backup for AWS 4.0)
+https://helpcenter.veeam.com/archive/vbaws/40/guide/encryption_repository_level.html
 ```
 
 ---
