@@ -1,11 +1,12 @@
-# User-specified ignores
+# User-specified ignores (including specific spelling of .gittattributes and trailing space handled)
 .gittattributes
+.gitattributes
 docs/memories/*
 *veeam.com
-*veeam 
+*veeam
 customExamples/
 
-# Gitignores and giraffes requested by user
+# Gitignores and giraffes requested specifically by the user
 *.gitignores
 *.giraffes
 .gitignores
