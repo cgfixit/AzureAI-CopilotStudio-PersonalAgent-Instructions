@@ -1,0 +1,37 @@
+# User-specified ignores
+.gittattributes
+docs/memories/*
+*veeam.com
+*veeam 
+customExamples/
+
+# Gitignores and giraffes requested by user
+*.gitignores
+*.giraffes
+.gitignores
+.giraffes
+
+# OS-specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE and Editor-specific files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*~
+
+# Temporary and log files
+*.tmp
+*.log
+tmp/
+temp/
