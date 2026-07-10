@@ -1,13 +1,12 @@
-Azure Open AI: Production-tested system instructions for enterprise AI personal agents
 # Universal AI Agent Safety Instructions
 (With specific examples)
 
-> Production-tested Personal agent template instructions w/ examples for enterprise/all companies and people using AI agents that prioritize accuracy, version-control, and anti-hallucination safeguards.
+> Production-tested (at current employer due to default GPT o3 hallucinating when connected to internet) Template and <a href="https://github.com/cgfixit/AzureAI-CopilotStudio-PersonalAgent-Instructions/tree/main/examples"/examples folder with 8+ personal agent instructions verified and tuned for o3 but can be generalized (I use the template.md as a project/space file in perplexity to noticeable improvement) Personal agent template instructions w/ examples for enterprise/all companies and people using AI agents that prioritize accuracy, version-control, and anti-hallucination safeguards. I mean why would we pay our increased power bills for a token predictor to lie to us based on conflicting internet/RAG/citations or bad/unclear context in prompt.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Azure AI](https://img.shields.io/badge/Azure%20AI-Compatible-0078D4)](https://azure.microsoft.com/en-us/products/ai-services/openai-service)
-[![CG DevSkim Security Analysis](https://github.com/CGFixIT/AzureAI-CopilotStudio-PersonalAgent-Instructions/actions/workflows/devskim.yml/badge.svg)](https://github.com/CGFixIT/AzureAI-CopilotStudio-PersonalAgent-Instructions/actions/workflows/devskim.yml)
-[![CG Gitleaks Secret Scan](https://github.com/CGFixIT/AzureAI-CopilotStudio-PersonalAgent-Instructions/actions/workflows/gitleaks.yml/badge.svg)](https://github.com/CGFixIT/AzureAI-CopilotStudio-PersonalAgent-Instructions/actions/workflows/gitleaks.yml)
+[![Azure AI/ MS Copilot Studio](https://img.shields.io/badge/Azure%20AI-Compatible-0078D4)](https://azure.microsoft.com/en-us/products/ai-services/openai-service)
+[![DevSkim Security Analysis](https://github.com/CGFixIT/AzureAI-CopilotStudio-PersonalAgent-Instructions/actions/workflows/devskim.yml/badge.svg)](https://github.com/CGFixIT/AzureAI-CopilotStudio-PersonalAgent-Instructions/actions/workflows/devskim.yml)
+[![Gitleaks Secret Scan](https://github.com/CGFixIT/AzureAI-CopilotStudio-PersonalAgent-Instructions/actions/workflows/gitleaks.yml/badge.svg)](https://github.com/CGFixIT/AzureAI-CopilotStudio-PersonalAgent-Instructions/actions/workflows/gitleaks.yml)
 ```
 License
 -------
@@ -17,23 +16,23 @@ The MIT License applies only to:
   - /examples/cloud-infra.md
   - /examples/incident-response.md
   - /examples/legal-compliance.md
-  - /examples/Network&SecurityAgent.md
+  - /examples/network&securityAgent.md
   - /examples/ps1AgentCoder.md
   - /examples/pythonAgentCoder.md
   - /examples/yaragenerator.md
 
-All other files, including /examples/veeamGPT.md, are provided for reference only
-and are NOT covered by the MIT license.
+All company-specific files, including /examples/veeamGPT.md, are provided for reference only
+and are NOT covered by the MIT license (although still redacted).
 ```
 ---
 
-## Why This Personal Agent Instruction Template Exists
+## Why This AI Personal Agent Instruction Template Exists
 
-**The Problem:** Large Language Models hallucinate technical details, mix up software versions, and confidently provide outdated instructions. In technical support, healthcare, legal, and compliance-heavy domains, this is unacceptable and costly.
+**The Problem:** Large Language Models hallucinate technical details, hedge or deceive when proven incorrect, mix up software versions or similar sounding words or concepts, and confidently provide outdated instructions/information. In engineering, finance, healthcare, legal, technical support and/or compliance-heavy domains, this is unacceptable, dangerous and costly.
 
 **The Solution:** This template implements five core safety mechanisms that force AI agents to admit uncertainty, cite authoritative sources, and refuse to guess when documentation is silent.
 
-Designed for real-world deployment in **Azure AI Studio**, **OpenAI Assistants API**, **Anthropic Claude Projects**, and similar agent frameworks.
+Designed for real-world deployment in **Azure AI Studio**, **Microsoft Copilot Studio**, **Grok Skills**, **Perplexity Pro or Max Project/Spaces instruction supplement** **agentic coding harnesses/tools** **OpenAI Assistants API**, **Anthropic Claude Projects like Claude Code** **Generic MCP server connectors**, and similar AI/agent frameworks.
 
 ---
 
@@ -41,11 +40,11 @@ Designed for real-world deployment in **Azure AI Studio**, **OpenAI Assistants A
 
 | Problem | Solution |
 |---------|----------|
-| 🚨 **Hallucinations** | 3-Tier source hierarchy (official docs > blog posts > personal notes) |
-| 📅 **Version drift** | Mandatory version validation in every tutorial |
-| 🔐 **Security risks** | Tool scoping + PII protection + audit logging |
-| ❓ **Scope creep** | Environment clarification rules force specificity |
-| ⚖️ **Compliance** | Built-in HIPAA/GDPR/SOC2 escalation protocols |
+| 🚨 **Hallucinations** | 3-Tier source hierarchy (official internal or highly reputable sources/docs > Marketing Whitepapers > Personal Tech Notes ;) |
+| 📅 **Version drift** | Mandatory version validation in every tutorial via agentic skill/tool call |
+| 🔐 **Security risks** | Tool scoping + PII protection + audit logging (optional) + sensitive langugage filters |
+| ❓ **Scope creep** | Environment clarification rules force specificity to ask for clarity on context or state conflicting answers in corpus scope |
+| ⚖️ **Compliance** | Built-in HIPAA/GDPR/SOC2/GDPR/CCPA/ escalation protocols |
 
 **Battle-tested:** v1.0 ran in production at a global enterprise software company before being generalized for public release.
 **Specific use cases in addition to TEMPLATE.md**
@@ -251,18 +250,19 @@ AI agent instructions based on the [Universal AI Agent Safety Template](https://
 
 ## Version History
 
-- **v1.9** (Jul 2026): Tightened `examples/legal-compliance.md` to better match the template standard with explicit response rules, connected-tool/data-access guidance, and stronger validation expectations
-- **v1.10** (Jul 2026): Aligned the README example inventory and license scope with the current `examples/` tree, and cleaned stale placeholder/paste artifacts from the o3-focused example set
+- **v1.10** (Jul 2026): Tightened `examples/legal-compliance.md` to better match the template standard with explicit response rules, removed internal notes in examples agent instructions (a paste artifact and a todo list ;)), connected-tool/data-access guidance, and stronger validation expectations via agentic skills/tools to force examples/ to align with template file every so often, optimized for o3 since usually its your companies money paying if you care this much about it being correct.. wait isnt that backwards ;)
+- **v1.9** (Jul 2026): Aligned the README example inventory and license scope with the current `examples/` tree, and cleaned stale placeholder/paste artifacts from the o3-focused example set
 - **v1.8** (Jul 2026): Pinned GitHub Actions workflow dependencies to exact commit SHAs for supply-chain hardening; `examples/legal-compliance.md` remains listed in the repository structure and MIT scope
 - **v1.7** (Jul 2026): Added `examples/legal-compliance.md` (modern technology compliance, AI governance, privacy, cybersecurity disclosure, and evidence mapping)
-- **v1.6** (Jul 2026): Rewrote CLAUDE.md as a full operating manual; added `preflight` (local CI mirror), `new-example`, `sync-template`, and `red-team` skills; fixed README filename drift and removed a leftover chat artifact from `Network&SecurityAgent.md`
+- **v1.6** (Jul 2026): Rewrote CLAUDE.md as a full operating manual; [***] added `preflight` (local CI mirror), `new-example`, `sync-template`, and `red-team` skills; fixed README filename drift and removed a leftover chat artifact from `Network&SecurityAgent.md`
 - **v1.5** (Jun 2026): Added `examples/incident-response.md` (DevOps incident response & SRE) via `/azureAI-optimize`
 - **v1.4** (Jun 2026): Added o3 Reasoning Protocol to TEMPLATE.md and all examples; added missing Escalation/Security sections; added CI workflows (placeholder-audit, markdown-lint, link-check); security hardening (Dependabot, CODEOWNERS, .gitattributes); fixed README structure and license filename drift
 - **v1.3** (May 2026): Added several new agent instructions under examples/
 - **v1.2** (Dec 2025): Added Azure "on your data" grounding rule, audit logging, normalized formatting
-- **v1.1** (Dec 2025): Added Tool & Data Access, Security & Privacy, ethical guardrails
+- **v1.1** (Dec 2025): Added Tool & Data Access info, Security & Privacy, ethical guardrails
 - **v1.0** (Dec 2025): Initial public release, based on production deployment at global enterprise software company
 
 ---
 
-**Built with ❤️ for teams who need AI agents that admit when they don't know.**
+**Built with <a href="https://linktr.ee/cgrady92">❤️</a> for teams who need AI agents that admit when they don't know.**
+<img width="134" height="28" alt="image" src="https://github.com/user-attachments/assets/e546f130-9574-466a-aecd-142ec051c215" />
