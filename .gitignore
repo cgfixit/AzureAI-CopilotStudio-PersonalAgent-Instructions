@@ -1,0 +1,38 @@
+# User-specified ignores (including specific spelling of .gittattributes and trailing space handled)
+.gittattributes
+.gitattributes
+docs/memories/*
+*veeam.com
+*veeam
+customExamples/
+
+# Gitignores and giraffes requested specifically by the user
+*.gitignores
+*.giraffes
+.gitignores
+.giraffes
+
+# OS-specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE and Editor-specific files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*~
+
+# Temporary and log files
+*.tmp
+*.log
+tmp/
+temp/
