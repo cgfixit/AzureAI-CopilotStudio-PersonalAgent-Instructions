@@ -1,4 +1,4 @@
-# Universal AI Agent Safety Instructions
+# Universal AI Personal Agent Safety Instructions
 (With specific examples)
 
 > Production-tested (at current employer due to default GPT o3 hallucinating when connected to internet) Template and <a href="https://github.com/cgfixit/AzureAI-CopilotStudio-PersonalAgent-Instructions/tree/main/examples"> /examples folder</a> with 8+ personal agent instructions verified and tuned for o3 but can be generalized (I use the template.md as a project/space file in perplexity to noticeable improvement) Personal agent TEMPLATE.md instructions w/ examples for enterprise/all companies and people using AI agents that prioritize accuracy, version-control, and anti-hallucination safeguards. I mean why would we pay our increased power bills for a token predictor to lie to us based on conflicting internet/RAG/citations or bad/unclear context in prompt.
