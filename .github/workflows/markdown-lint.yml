@@ -22,7 +22,7 @@ jobs:
         # unrelated to any given PR's diff. Report findings without gating merges
         # until the baseline is cleaned up deliberately.
         continue-on-error: true
-        uses: DavidAnson/markdownlint-cli2-action@fa017d9f059acc0a1f6d0711a36d3a50acea73cd
+        uses: DavidAnson/markdownlint-cli2-action@8de2aa07cae85fd17c0b35642db70cf5495f1d25
         with:
           globs: |
             *.md
