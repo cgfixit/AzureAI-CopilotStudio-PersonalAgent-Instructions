@@ -15,6 +15,7 @@ The MIT License applies only to:
   - /TEMPLATE.md
   - /examples/cloud-infra.md
   - /examples/incident-response.md
+  - /examples/langchain-agents.md
   - /examples/legal-compliance.md
   - /examples/network&securityAgent.md
   - /examples/ps1AgentCoder.md
@@ -50,6 +51,7 @@ Designed for real-world deployment in **Azure AI Studio**, **Microsoft Copilot S
 **Specific use cases in addition to TEMPLATE.md**
 - cloud-infra.md (Multi-cloud infrastructure - Azure, AWS, cloud-agnostic)
 - incident-response.md (DevOps incident response and SRE runbooks/postmortems)
+- langchain-agents.md (Deep Agents harnesses with local open-weight models, scoped tools, HITL, and CyClaw references)
 - legal-compliance.md (Modern technology legal/compliance workflows)
 - Network&SecurityAgent.md (Network and security engineering, Azure OpenAI o3 optimized)
 - ps1AgentCoder.md (PowerShell coding agent, PS 5.1 + 7+)
@@ -270,6 +272,7 @@ https://helpcenter.veeam.com/archive/vbaws/40/guide/encryption_repository_level.
 ├── examples/
 │   ├── cloud-infra.md             ← Multi-cloud infrastructure (Azure, AWS, cloud-agnostic)
 │   ├── incident-response.md       ← DevOps incident response & SRE runbooks/postmortems
+│   ├── langchain-agents.md        ← Deep Agents harnesses with local models, HITL & CyClaw references
 │   ├── legal-compliance.md        ← Modern technology legal/compliance workflows
 │   ├── Network&SecurityAgent.md   ← Network & security engineering (Azure OpenAI o3 optimized)
 │   ├── ps1AgentCoder.md           ← PowerShell coding agent (PS 5.1 + 7+)
@@ -311,6 +314,7 @@ AI agent instructions based on the [Universal AI Agent Safety Template](https://
 
 ## Version History
 
+- **v1.11** (Jul 2026): Added `examples/langchain-agents.md` for governed Deep Agents harnesses using local open-weight models, scoped tools, deterministic evaluation, human approval, and pinned CyClaw references
 - **v1.10** (Jul 2026): Tightened `examples/legal-compliance.md` to better match the template standard with explicit response rules, removed internal notes in examples agent instructions (a paste artifact and a todo list ;)), connected-tool/data-access guidance, and stronger validation expectations via agentic skills/tools to force examples/ to align with template file every so often, optimized for o3 since usually its your companies money paying if you care this much about it being correct.. wait isnt that backwards ;)
 - **v1.9** (Jul 2026): Aligned the README example inventory and license scope with the current `examples/` tree, and cleaned stale placeholder/paste artifacts from the o3-focused example set
 - **v1.8** (Jul 2026): Pinned GitHub Actions workflow dependencies to exact commit SHAs for supply-chain hardening; `examples/legal-compliance.md` remains listed in the repository structure and MIT scope
