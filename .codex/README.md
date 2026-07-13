@@ -4,6 +4,8 @@ This directory contains Codex-facing guidance for this docs-only prompt reposito
 
 ## Skills
 
+- `$codex-onboarding`: resync the repo, verify Codex setup, and prepare the
+  smallest safe change set for a PR.
 - `$preflight`: run the local CI mirror before Markdown commits.
 - `$azureai-optimize`: inspect prompt, CI, README, and security-hardening gaps.
 - `$codex-verify`: verify repo-local Codex docs, command wrappers, and CI workflow hardening surfaces.
@@ -26,6 +28,8 @@ python .codex/scripts/repo_audit.py verify-codex .
   behavior changes.
 - `.codex/commands/` contains lightweight repo-local wrappers for the most common
   Codex entrypoints.
+- Use `codex-onboarding` first when resyncing the repo, checking Codex setup, or
+  preparing a fresh PR branch from `main`.
 - The Python audit entrypoints are the Windows-friendly default; the legacy shell
   scripts remain as optional Unix mirrors.
 - `.codex/ponytail-plugin.json` records the Ponytail plugin metadata used for minimal
