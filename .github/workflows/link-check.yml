@@ -23,7 +23,7 @@ jobs:
         # sites like Reddit/Azure portal) independent of any given PR's diff.
         # Report findings without gating merges on inherited link drift.
         continue-on-error: true
-        uses: lycheeverse/lychee-action@8646ba30535128ac92d33dfc9133794bfdd9b411
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8
         with:
           args: --verbose --no-progress '*.md' 'examples/*.md'
           fail: true
