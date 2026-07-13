@@ -2,6 +2,8 @@
 
 Available repo-local command notes:
 
+- `codex-onboarding.md` for resyncing `main`, verifying Codex setup, and
+  preparing a PR branch
 - `preflight.md` for the blocking local CI mirror before Markdown commits
 - `azureai-optimize.md` for periodic repo improvement passes
 - `codex-verify.md` for repo-local Codex and CI-surface verification after clone or before publish

@@ -21,6 +21,17 @@ content in `TEMPLATE.md` and `examples/*.md`.
 - `.claude/skills/` remains for Claude users; do not edit it unless the change is
   intentionally cross-agent.
 
+## Codex Entry Points
+
+- `codex-onboarding` for clone/resync, Codex setup verification, and PR prep.
+- `preflight` for the blocking Markdown mirror before committing prompt changes.
+- `azureai-optimize` for prompt/README/CI hygiene improvements.
+- `codex-verify` for repo-local Codex and workflow hardening checks after clone
+  or before publishing `.codex/` changes.
+- `new-example` for adding a new deployable `examples/*.md` file.
+- `sync-template` for propagating approved `TEMPLATE.md` contract changes.
+- `red-team` for adversarial validation of one example file.
+
 ## Required Workflow
 
 1. Read `README.md`, `TEMPLATE.md`, and this file before editing prompt content.
@@ -53,6 +64,14 @@ python .codex/scripts/repo_audit.py verify-codex .
 - Do not make non-blocking CI checks blocking unless explicitly requested.
 - The tree wins for file existence; `README.md` wins for license scope and placeholder
   inventory.
+
+## Codex Discipline
+
+- Use `karpathy-skills:karpathy-guidelines` when the current Codex session has the
+  plugin installed and the task involves writing, reviewing, or refactoring.
+- Use `ponytail:ponytail` for the smallest correct diff and native tools first.
+- Keep repo-local guidance Windows-friendly; prefer Python entrypoints over
+  bash-only wrappers for Codex workflows.
 
 ## Ponytail
 
