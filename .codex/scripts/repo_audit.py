@@ -134,12 +134,13 @@ def find_placeholders(path: Path) -> list[str]:
 def readme_consistency_issues(root: Path) -> list[str]:
     issues: list[str] = []
     readme_text = read_text(root / "README.md")
+    valid_names = {path.name for path in root.glob("*.md")} | {path.name for path in example_files(root)}
     for path in example_files(root):
         if path.name not in readme_text:
             issues.append(f"README.md does not mention {path.name} (Repository Structure block out of sync)")
     for name in sorted(set(README_NAME_RE.findall(readme_text))):
-        if not (root / name).exists() and not (root / "examples" / name).exists():
-            issues.append(f"README.md references '{name}' but no such file exists (root or examples/)")
+        if name not in valid_names:
+            issues.append(f"README.md references '{name}' but no exact-case file exists (root or examples/)")
     return issues
 
 
