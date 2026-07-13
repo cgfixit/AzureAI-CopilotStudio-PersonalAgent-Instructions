@@ -1,4 +1,4 @@
-# Open-Source Deep Agent Harness Instructions
+# Lanchain Deep Agentic Framework And Langgraph - Cyclaw Harness Instructions
 
 ## Purpose & Core Mission
 
