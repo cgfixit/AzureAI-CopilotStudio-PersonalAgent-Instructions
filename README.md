@@ -42,7 +42,7 @@ and are NOT covered by the MIT license (although still redacted).
 
 **The Solution:** This template implements five core safety mechanisms that force AI agents to admit uncertainty, cite authoritative sources, and refuse to guess when documentation is silent.
 
-Designed for real-world deployment in **Azure AI Studio**, **Microsoft Copilot Studio**, **Grok Skills**, **Perplexity Pro or Max Project/Spaces instruction supplement** **agentic coding harnesses/tools** **OpenAI Assistants API**, **Anthropic Claude Projects like Claude Code** **Generic MCP server connectors**, and similar AI/agent frameworks.
+Designed for real-world deployment in **Azure AI Studio**, **Microsoft Copilot Studio**, **ChatGPT Enterprise Workspace Agents**, **Grok Skills**, **Perplexity Pro or Max Project/Spaces instruction supplement** **agentic coding harnesses/tools** **OpenAI Assistants API**, **Anthropic Claude Projects like Claude Code** **Generic MCP server connectors**, and similar AI/agent frameworks.
 
 ---
 
@@ -73,6 +73,9 @@ variants replace o3-specific internal reasoning checklists with lean, outcome-fi
 execution policies while preserving each domain's safety, source, escalation, and
 verification requirements. They follow the current
 [GPT-5.6 prompting guidance](https://developers.openai.com/api/docs/guides/model-guidance?model=gpt-5.6).
+Each Sol variant also defines an Enterprise personal-agent boundary for active-workspace
+scope, current-user authority, approved connector use, denied access, and untrusted
+retrieved content.
 
 ---
 
@@ -124,6 +127,16 @@ Before deploying customized instructions:
 2. Paste the customized template into the **System Message** field
 3. Enable **"On Your Data"** if using indexed content (recommended)
 4. Test with version-specific queries
+
+#### ChatGPT Enterprise Workspace Agents
+1. Confirm the target role can use Workspace Agents, the selected model, and every
+   required app or connector in the active Enterprise workspace.
+2. Create or update a private agent, then paste the applicable `-5.6Sol.md`
+   instructions into its instruction field.
+3. Start with approved read-only apps and the narrowest file or connector scope; do
+   not use an app permission to bypass the prompt's approval rules.
+4. Preview against the validation prompts, including denied-access, prompt-injection,
+   and external-action cases, before sharing or publishing the agent.
 
 #### OpenAI Assistants API
 ```python
@@ -339,6 +352,7 @@ AI agent instructions based on the [Universal AI Agent Safety Template](https://
 
 ## Version History
 
+- **v1.13** (Jul 2026): Added ChatGPT Enterprise personal-agent workspace, RBAC, connector, and evidence boundaries to every GPT-5.6 Sol example and documented a least-privilege Enterprise deployment path
 - **v1.12** (Jul 2026): Added a GPT-5.6 Sol-tailored `-5.6Sol.md` counterpart for every deployable example while retaining the complete o3-focused set
 - **v1.11** (Jul 2026): Added `examples/langchain-agents.md` for governed Deep Agents harnesses using local open-weight models, scoped tools, deterministic evaluation, human approval, and pinned CyClaw references
 - **v1.10** (Jul 2026): Tightened `examples/legal-compliance.md` to better match the template standard with explicit response rules, removed internal notes in examples agent instructions (a paste artifact and a todo list ;)), connected-tool/data-access guidance, and stronger validation expectations via agentic skills/tools to force examples/ to align with template file every so often, optimized for o3 since usually its your companies money paying if you care this much about it being correct.. wait isnt that backwards ;)
