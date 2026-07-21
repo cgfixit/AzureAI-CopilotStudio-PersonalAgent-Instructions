@@ -66,6 +66,7 @@ EXPECTED_SKILLS = {
     "new-example",
     "preflight",
     "red-team",
+    "sol-optimize",
     "sync-template",
 }
 EXPECTED_COMMANDS = {
@@ -402,12 +403,12 @@ def run_verify_codex(root: Path) -> int:
         report.pass_("expected skill directories are present")
 
     print("\n-- 2. Windows-friendly Codex docs --")
-    agents_text = read_text(root / "AGENTS.md")
+    agents_text = read_text(root / ".codex" / "AGENTS.md")
     codex_readme_text = read_text(root / ".codex" / "README.md")
     if "python .codex/scripts/repo_audit.py preflight ." in agents_text:
-        report.pass_("AGENTS.md points to the Python preflight entrypoint")
+        report.pass_(".codex/AGENTS.md points to the Python preflight entrypoint")
     else:
-        report.fail("AGENTS.md still lacks the Python preflight command")
+        report.fail(".codex/AGENTS.md still lacks the Python preflight command")
     if "python .codex/scripts/repo_audit.py analyze ." in codex_readme_text:
         report.pass_(".codex/README.md points to the Python analyzer")
     else:

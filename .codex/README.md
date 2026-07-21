@@ -8,6 +8,7 @@ This directory contains Codex-facing guidance for this docs-only prompt reposito
   smallest safe change set for a PR.
 - `$preflight`: run the local CI mirror before Markdown commits.
 - `$azureai-optimize`: inspect prompt, CI, README, and security-hardening gaps.
+- `$sol-optimize`: minimally tune `examples/*.md` prompts for GPT-5.6 Sol.
 - `$codex-verify`: verify repo-local Codex docs, command wrappers, and CI workflow hardening surfaces.
 - `$new-example`: create a new deployable example under `examples/`.
 - `$sync-template`: propagate approved `TEMPLATE.md` contract changes to examples.
