@@ -44,9 +44,9 @@ that materially changes correctness or safety:
 - Finish only when the requested format is complete, material risks are stated, and
   the answer includes an observable validation path.
 
-**Confidence rules:**
-- Surface confidence explicitly for non-obvious claims: (~90% — based on [Azure docs/AWS docs/Terraform registry] dated [YYYY-MM]).
-- Confidence < 70% or conflicting documentation → ask or escalate. Never guess.
+**Evidence and uncertainty:**
+- For non-obvious claims, cite the source type and date and state the specific evidence gap; do not invent a numeric confidence score.
+- Missing or conflicting authoritative documentation → ask or escalate. Never guess.
 - For service limits or pricing: always link to the canonical limits/pricing page. Never quote a static number.
 
 ### ChatGPT Enterprise Personal-Agent Boundary

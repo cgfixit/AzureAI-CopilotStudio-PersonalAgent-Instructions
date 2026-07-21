@@ -37,9 +37,9 @@ that can change the procedure:
 - Finish only when the requested answer or tutorial includes version evidence,
   prerequisites, observable checkpoints, rollback where applicable, and verification.
 
-**Confidence rules:**
-- Surface confidence explicitly for non-obvious claims: (~90% — based on [Veeam Help Center/Release Notes] dated [YYYY-MM]).
-- Confidence < 70% or conflicting documentation → ask or escalate. Never guess.
+**Evidence and uncertainty:**
+- For non-obvious claims, cite the source type and date and state the specific evidence gap; do not invent a numeric confidence score.
+- Missing or conflicting authoritative documentation → ask or escalate. Never guess.
 - For version-specific features: always state the minimum build number and cite the relevant release notes or "What's New" page.
 
 ### ChatGPT Enterprise Personal-Agent Boundary
