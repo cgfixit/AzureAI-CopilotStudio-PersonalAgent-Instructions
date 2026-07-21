@@ -1,7 +1,7 @@
 # Universal AI Personal Agent Safety Instructions
 (With specific examples)
 
-> Production-tested (at current employer due to default GPT o3 hallucinating when connected to internet) Template and <a href="https://github.com/cgfixit/AzureAI-CopilotStudio-PersonalAgent-Instructions/tree/main/examples"> /examples folder</a> with 8+ personal agent instructions verified and tuned for o3 but can be generalized (I use the TEMPLATE.md as a project/space file in perplexity to noticeable improvement) Personal agent TEMPLATE.md instructions w/ examples for enterprise/all companies and people using AI agents that prioritize accuracy, version-control, and anti-hallucination safeguards. I mean why would we pay our increased power bills for a token predictor to lie to us based on conflicting internet/RAG/citations or bad/unclear context in prompt.
+> Production-tested (at current employer due to default GPT o3 hallucinating when connected to internet) Template and <a href="https://github.com/cgfixit/AzureAI-CopilotStudio-PersonalAgent-Instructions/tree/main/examples"> /examples folder</a> with 8+ personal agent instructions verified and tuned for o3, plus paired `-5.6Sol.md` versions tailored to GPT-5.6 Sol (I use the TEMPLATE.md as a project/space file in perplexity to noticeable improvement) Personal agent TEMPLATE.md instructions w/ examples for enterprise/all companies and people using AI agents that prioritize accuracy, version-control, and anti-hallucination safeguards. I mean why would we pay our increased power bills for a token predictor to lie to us based on conflicting internet/RAG/citations or bad/unclear context in prompt.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Azure AI/ MS Copilot Studio](https://img.shields.io/badge/Azure%20AI-Compatible-0078D4)](https://azure.microsoft.com/en-us/products/ai-services/openai-service)
@@ -14,15 +14,24 @@ License
 The MIT License applies only to:
   - /TEMPLATE.md
   - /examples/cloud-infra.md
+  - /examples/cloud-infra-5.6Sol.md
   - /examples/incident-response.md
+  - /examples/incident-response-5.6Sol.md
   - /examples/langchain-agents.md
+  - /examples/langchain-agents-5.6Sol.md
   - /examples/legal-compliance.md
+  - /examples/legal-compliance-5.6Sol.md
   - /examples/Network&SecurityAgent.md
+  - /examples/Network&SecurityAgent-5.6Sol.md
   - /examples/ps1AgentCoder.md
+  - /examples/ps1AgentCoder-5.6Sol.md
   - /examples/pythonAgentCoder.md
+  - /examples/pythonAgentCoder-5.6Sol.md
   - /examples/yaragenerator.md
+  - /examples/yaragenerator-5.6Sol.md
 
-All company-specific files, including /examples/veeamGPT.md, are provided for reference only
+All company-specific files, including /examples/veeamGPT.md and
+/examples/veeamGPT-5.6Sol.md, are provided for reference only
 and are NOT covered by the MIT license (although still redacted).
 ```
 ---
@@ -58,6 +67,13 @@ Designed for real-world deployment in **Azure AI Studio**, **Microsoft Copilot S
 - pythonAgentCoder.md (Python coding agent, 3.12+)
 - veeamGPT.md (Veeam Backup & Replication reference only, not MIT)
 - yaragenerator.md (YARA rule generator and cross-platform integration)
+
+Each example also has a `-5.6Sol.md` counterpart for OpenAI GPT-5.6 Sol. These
+variants replace o3-specific internal reasoning checklists with lean, outcome-first
+execution policies while preserving each domain's safety, source, escalation, and
+verification requirements. They follow the current
+[GPT-5.6 prompting guidance](https://developers.openai.com/api/docs/guides/model-guidance?model=gpt-5.6).
+
 ---
 
 ## Quick Start
@@ -271,14 +287,23 @@ https://helpcenter.veeam.com/archive/vbaws/40/guide/encryption_repository_level.
 ├── TEMPLATE.md                    ← The full system instructions template
 ├── examples/
 │   ├── cloud-infra.md             ← Multi-cloud infrastructure (Azure, AWS, cloud-agnostic)
+│   ├── cloud-infra-5.6Sol.md      ← GPT-5.6 Sol-tailored multi-cloud infrastructure
 │   ├── incident-response.md       ← DevOps incident response & SRE runbooks/postmortems
+│   ├── incident-response-5.6Sol.md ← GPT-5.6 Sol-tailored incident response & SRE
 │   ├── langchain-agents.md        ← Deep Agents harnesses with local models, HITL & CyClaw references
+│   ├── langchain-agents-5.6Sol.md ← GPT-5.6 Sol-tailored Deep Agents harnesses
 │   ├── legal-compliance.md        ← Modern technology legal/compliance workflows
+│   ├── legal-compliance-5.6Sol.md ← GPT-5.6 Sol-tailored legal/compliance workflows
 │   ├── Network&SecurityAgent.md   ← Network & security engineering (Azure OpenAI o3 optimized)
+│   ├── Network&SecurityAgent-5.6Sol.md ← Network & security engineering for GPT-5.6 Sol
 │   ├── ps1AgentCoder.md           ← PowerShell coding agent (PS 5.1 + 7+)
+│   ├── ps1AgentCoder-5.6Sol.md    ← GPT-5.6 Sol-tailored PowerShell coding agent
 │   ├── pythonAgentCoder.md        ← Python coding agent (3.12+)
+│   ├── pythonAgentCoder-5.6Sol.md ← GPT-5.6 Sol-tailored Python coding agent
 │   ├── veeamGPT.md                ← Backup & DR (Veeam — reference only, not MIT)
-│   └── yaragenerator.md           ← YARA rule generator & cross-platform integration
+│   ├── veeamGPT-5.6Sol.md         ← GPT-5.6 Sol-tailored Veeam reference (not MIT)
+│   ├── yaragenerator.md           ← YARA rule generator & cross-platform integration
+│   └── yaragenerator-5.6Sol.md    ← GPT-5.6 Sol-tailored YARA rule generator
 └── LICENSE                        ← MIT License (scoped — see above)
 ```
 
@@ -314,6 +339,7 @@ AI agent instructions based on the [Universal AI Agent Safety Template](https://
 
 ## Version History
 
+- **v1.12** (Jul 2026): Added a GPT-5.6 Sol-tailored `-5.6Sol.md` counterpart for every deployable example while retaining the complete o3-focused set
 - **v1.11** (Jul 2026): Added `examples/langchain-agents.md` for governed Deep Agents harnesses using local open-weight models, scoped tools, deterministic evaluation, human approval, and pinned CyClaw references
 - **v1.10** (Jul 2026): Tightened `examples/legal-compliance.md` to better match the template standard with explicit response rules, removed internal notes in examples agent instructions (a paste artifact and a todo list ;)), connected-tool/data-access guidance, and stronger validation expectations via agentic skills/tools to force examples/ to align with template file every so often, optimized for o3 since usually its your companies money paying if you care this much about it being correct.. wait isnt that backwards ;)
 - **v1.9** (Jul 2026): Aligned the README example inventory and license scope with the current `examples/` tree, and cleaned stale placeholder/paste artifacts from the o3-focused example set

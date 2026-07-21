@@ -38,7 +38,7 @@ IGNORE_ASSIGN_VALUE_RE = re.compile(
     r"your|example|placeholder|redacted|fake|dummy|xxx|changeme|<.*>",
     re.IGNORECASE,
 )
-README_NAME_RE = re.compile(r"[A-Za-z0-9&_-]+\.md")
+README_NAME_RE = re.compile(r"(?<![A-Za-z0-9&_.-])[A-Za-z0-9&][A-Za-z0-9&_.-]*\.md")
 INVARIANTS = {
     "purpose/mission": re.compile(r"purpose|core mission", re.IGNORECASE),
     "forbidden actions": re.compile(r"forbidden", re.IGNORECASE),
