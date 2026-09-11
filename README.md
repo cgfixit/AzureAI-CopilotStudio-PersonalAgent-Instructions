@@ -1,8 +1,6 @@
 # Universal AI Personal Agent Safety Instructions
 (With specific examples)
 
-> Production-tested (at current employer due to default GPT o3 hallucinating when connected to internet) Template and <a href="https://github.com/cgfixit/AzureAI-CopilotStudio-PersonalAgent-Instructions/tree/main/examples"> /examples folder</a> with 8+ personal agent instructions verified and tuned for o3, plus paired `-5.6Sol.md` versions tailored to GPT-5.6 Sol (I use the TEMPLATE.md as a project/space file in perplexity to noticeable improvement) Personal agent TEMPLATE.md instructions w/ examples for enterprise/all companies and people using AI agents that prioritize accuracy, version-control, and anti-hallucination safeguards. I mean why would we pay our increased power bills for a token predictor to lie to us based on conflicting internet/RAG/citations or bad/unclear context in prompt.
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Azure AI/ MS Copilot Studio](https://img.shields.io/badge/Azure%20AI-Compatible-0078D4)](https://azure.microsoft.com/en-us/products/ai-services/openai-service)
 [![DevSkim Security Analysis](https://github.com/CGFixIT/AzureAI-CopilotStudio-PersonalAgent-Instructions/actions/workflows/devskim.yml/badge.svg)](https://github.com/CGFixIT/AzureAI-CopilotStudio-PersonalAgent-Instructions/actions/workflows/devskim.yml)
