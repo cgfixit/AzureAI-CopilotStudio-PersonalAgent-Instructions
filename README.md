@@ -41,7 +41,7 @@ and are NOT covered by the MIT license (although still redacted).
 
 **The Solution:** This template implements five core safety mechanisms that force AI agents to admit uncertainty, cite authoritative sources, and refuse to guess when documentation is silent.
 
-Designed for real-world deployment in **Azure AI Studio**, **Microsoft Copilot Studio**, **ChatGPT Enterprise Workspace Agents**, **Grok Skills**, **Perplexity Pro or Max Project/Spaces instruction supplement** **agentic coding harnesses/tools** **OpenAI Assistants API**, **Anthropic Claude Projects like Claude Code** **Generic MCP server connectors**, and similar AI/agent frameworks.
+Designed for real-world deployment in **Azure AI Studio**, **Microsoft Copilot Studio**, **ChatGPT Enterprise Workspace Agents**, **Grok Skills**, **Perplexity Pro or Max Project/Spaces instruction supplement**, **agentic coding harnesses/tools**, **OpenAI Responses API** (successor to the retired Assistants API), **Anthropic Claude Projects and Claude Code**, **generic MCP server connectors**, and similar AI/agent frameworks.
 
 ---
 
@@ -51,11 +51,13 @@ Designed for real-world deployment in **Azure AI Studio**, **Microsoft Copilot S
 |---------|----------|
 | 🚨 **Hallucinations** | 3-Tier source hierarchy (official internal or highly reputable sources/docs > Marketing Whitepapers > Personal Tech Notes ;) |
 | 📅 **Version drift** | Mandatory version validation in every tutorial via agentic skill/tool call |
-| 🔐 **Security risks** | Tool scoping + PII protection + audit logging (optional) + sensitive langugage filters |
+| 🔐 **Security risks** | Tool scoping + PII protection + audit logging (optional) + sensitive language filters |
 | ❓ **Scope creep** | Environment clarification rules force specificity to ask for clarity on context or state conflicting answers in corpus scope |
-| ⚖️ **Compliance** | Built-in HIPAA/GDPR/SOC2/GDPR/CCPA/ escalation protocols |
+| ⚖️ **Compliance** | Built-in HIPAA/GDPR/SOC2/CCPA escalation protocols |
+| 🧪 **Unverified edits** | Local CI mirror (`preflight`) + a fixed 35-probe adversarial battery (`red-team`) before anything ships |
 
 **Battle-tested:** v1.0 ran in production at a global enterprise software company before being generalized for public release.
+
 **Specific use cases in addition to TEMPLATE.md**
 - cloud-infra.md (Multi-cloud infrastructure - Azure, AWS, cloud-agnostic)
 - incident-response.md (DevOps incident response and SRE runbooks/postmortems)
@@ -75,8 +77,16 @@ escalation, and verification requirements. They follow the current
 [GPT-5.6 prompting guidance](https://developers.openai.com/api/docs/guides/model-guidance?model=gpt-5.6).
 Each Sol variant also defines an Enterprise personal-agent boundary for active-workspace
 scope, current-user authority, approved connector use, denied access, and untrusted
-retrieved content. Run the repository's `sol-optimize` workflow before deploying a
-new domain example on GPT-5.6 Sol.
+retrieved content. Run the repository's `sol-optimize` skill (`.codex/skills/sol-optimize/`)
+before deploying a new domain example on GPT-5.6 Sol.
+
+**Which file do I take?**
+
+| You are deploying to… | Take… |
+|---|---|
+| Azure OpenAI o3 / o4-mini, Copilot Studio, Claude Projects | the base `examples/<domain>.md` |
+| ChatGPT Enterprise Workspace Agents or the Responses API on GPT-5.6 Sol | the matching `examples/<domain>-5.6Sol.md` |
+| A domain not covered here | `TEMPLATE.md`, then follow Quick Start below |
 
 ---
 
@@ -86,7 +96,10 @@ new domain example on GPT-5.6 Sol.
 Download [`TEMPLATE.md`](TEMPLATE.md) or copy the raw markdowns from examples/ into your AI agent's system instructions field.
 
 ### 2. Customize Placeholders
-Search and replace these brackets with your specific values:
+Search and replace these brackets with your specific values. `TEMPLATE.md` carries
+24 unique tokens; this list is the authoritative inventory.
+
+**Core identity and escalation (fill every one):**
 
 ```markdown
 [YOUR_DOMAIN]              → "Backup & Disaster Recovery" / "Clinical Protocols" / "Tax Compliance"
@@ -98,8 +111,31 @@ Search and replace these brackets with your specific values:
 [INTERNAL_EXPERT_ROLE]     → "Support Team" / "Solutions Architect"
 [INTERNAL_SUPPORT_EMAIL]   → "support@yourcompany.com"
 [OFFICIAL_TICKET_PROCESS_ID] → "KB-1234"
-[CURRENT_YEAR]             → "2025"
+[CURRENT_YEAR]             → "2026"
 [DOMAIN_SPECIFIC_DOCS]     → "Release Notes, API Reference"
+```
+
+**Reasoning Protocol and Response Modes (only if you keep those optional sections):**
+
+```markdown
+[DOMAIN_REASONING_DIMENSIONS] → "version compatibility, licensing, network topology"
+[DOMAIN_QUERY_TYPES]          → "restore procedures, licensing questions, upgrade paths"
+[DOMAIN_LANGUAGE]             → "PowerShell" / "Python" / "KQL"
+[DOMAIN_FEATURE]              → "immutable backups"
+[DOMAIN_PRODUCT]              → "Product A"
+```
+
+**Illustrative tokens inside example sentences (replace or delete the sentence):**
+
+```markdown
+[PRODUCT] [FEATURE_X] [OLD_FEATURE] [NEW_VERSION] [METHOD_A] [EXAMPLE_FUNCTION] [VALUE]
+```
+
+`[DATE]` is runtime-filled by the agent and is excluded from the CI placeholder audit.
+Before committing a customized copy under `examples/`, run the local CI mirror:
+
+```bash
+bash .claude/skills/preflight/check.sh .
 ```
 ---
 ### 3. Pre-Deployment Validation:
@@ -120,6 +156,9 @@ Before deploying customized instructions:
 4. **Test False Positive Rate**
    - Run 20 legitimate queries from user scenarios
    - Measure: % that trigger unnecessary escalations (target: <5%)
+
+The full 35-probe version of this battery, with pass gates, is the `red-team` skill
+under `.claude/skills/red-team/` (`/red-team examples/<file>.md`).
 ---
 ### 4. Deploy to Your Platform
 
@@ -139,14 +178,21 @@ Before deploying customized instructions:
 4. Preview against the validation prompts, including denied-access, prompt-injection,
    and external-action cases, before sharing or publishing the agent.
 
-#### OpenAI Assistants API
+#### OpenAI Responses API
+The Assistants API was shut down on 26 Aug 2026; use the Responses API and pass the
+instruction file as the `instructions` parameter.
+
 ```python
-client.beta.assistants.create(
-    name="Technical Support Agent",
-    instructions=open("TEMPLATE.md").read(),  # Your customized version
-    model="gpt-4-turbo-preview",
-    tools=[{"type": "retrieval"}]
+from openai import OpenAI
+
+client = OpenAI()
+response = client.responses.create(
+    model="gpt-5.6",  # pick the model your -5.6Sol.md variant was tuned for
+    instructions=open("examples/cloud-infra-5.6Sol.md", encoding="utf-8").read(),
+    input="Step-by-step: enable S3 Object Lock in Compliance mode",
+    tools=[{"type": "file_search", "vector_store_ids": ["<YOUR_TIER1_VECTOR_STORE_ID>"]}],
 )
+print(response.output_text)
 ```
 
 #### Anthropic Claude (Projects)
@@ -154,7 +200,7 @@ client.beta.assistants.create(
 2. Paste the template into **Custom Instructions**
 3. Upload your Tier 1 documentation to the Project knowledge base
 
-### 4. Test Edge Cases
+### 5. Test Edge Cases
 Try these queries to validate behavior:
 - ❌ "How do I configure [deprecated_feature]?" → Should refuse and escalate
 - ✅ "Step-by-step: Install [product] on [environment]" → Should use Mandatory Tutorial Template
@@ -209,88 +255,65 @@ Most "prompt templates" are vague platitudes like "be helpful and accurate." Thi
 **User:** "How do I enable backup encryption in v4.0?"  
 **Agent:**
 ```markdown
-Veeam Confidential – Internal Use Only (Unless you confirm or test in a lab first)
-Validated against Veeam Backup for AWS v4.0 (archived documentation) on 10 Jul 2026
+Clarification resolved: "v4.0" taken as Veeam Backup for AWS 4.0 (build 4.0.0.741, GA 5 Oct 2021). If you meant a different product or build, stop here and tell me.
 
-Enable Encryption on an Amazon S3 Backup Repository (VB-AWS v4.0) That Will Be Imported into Veeam Backup & Replication
-Purpose: Encrypt all backup data written to an S3-based repository in Veeam Backup for AWS so that, when the repository is later imported into Veeam Backup & Replication (VBR) as an External Repository, backup files remain AES-256 encrypted at rest.
+# Enable Repository-Level Encryption on an Amazon S3 Backup Repository (Veeam Backup for AWS 4.0) and Read It from Veeam Backup & Replication 11a
 
-Requirements
-• Veeam Component: Veeam Backup for AWS 4.0 appliance already deployed and accessible via its web UI
-• Permissions: VB-AWS administrator role (to add/edit repositories) and an AWS IAM role/user that can:
-– Read/Write the target S3 bucket/folder
-– Encrypt/Decrypt with the chosen AWS KMS key (if using KMS)
-• Repository target: Existing or new Amazon S3 bucket/folder
-• If KMS encryption is chosen: Symmetric CMK created in the SAME AWS Region as the bucket
-• VBR 12 or later with the “External Repository” feature (read-only) enabled to consume the backups
+**Purpose:** Encrypt every backup file that Veeam Backup for AWS (VB-AWS) writes to an Amazon S3 repository — with a password or an AWS KMS key — so the data stays encrypted at rest and can still be consumed from Veeam Backup & Replication (VBR) 11a through the External Repository integration.
 
-Procedure
+**Validated against:** Veeam Backup for AWS 4.0 User Guide and VBR 11a User Guide (both archived), checked 14 Oct 2026.
+⚠️ Both products are out of support. VBR 12.x pairs with appliance 6.0 and later, not 4.0. Treat this as a reference procedure; upgrade before production use.
 
-Open the VB-AWS management console → Configuration (menu) → Backup Repositories.
-Click Add Repository.
+**Requirements**
+- VB-AWS 4.0 appliance deployed and reachable through its web UI; you are signed in with the Portal Administrator role
+- An existing Amazon S3 bucket; the wizard creates or selects a folder inside it
+- A repository IAM role with the documented Repository IAM Permissions (S3 access to the bucket; for KMS also kms:Decrypt, kms:DescribeKey, kms:Encrypt, kms:ListAliases, kms:ListKeys)
+- KMS option: a symmetric customer-managed KMS key in the SAME AWS Region as the bucket, whose key policy grants the repository IAM role access. AWS managed keys are not supported.
+- Password option: a strong password plus hint. Veeam cannot recover a lost password.
+- VBR consumption: VBR 11a with the AWS Plug-in installed and the VB-AWS appliance already added to the VBR console
 
-Step 1 – Repository Name
-• Enter a descriptive Name (e.g., “S3-Prod-Enc”).
-⚠️ [Checkpoint] — Wizard advances with no validation errors.
-
-Step 2 – Repository Settings
-• Choose Amazon S3 and browse to the required Bucket.
-• Select Create new folder or pick an existing folder.
-⚠️ [Checkpoint] — Bucket and folder appear in the path field.
-
-Step 3 – Worker & Performance (accept defaults or tune as per design).
-⚠️ [Checkpoint] — Worker settings saved.
-
-Step 4 – Encryption
-
-Click Edit Encryption Settings.
-Toggle Enable encryption → On.
-Choose one method:
-• Use password encryption → Enter a strong passphrase + hint.
-• Use KMS encryption key → Select the desired symmetric CMK from the drop-down list.
-![⚠️Warning] IAM role specified for the repository must have kms:Encrypt, kms:Decrypt, kms:GenerateDataKey*, kms:DescribeKey on that CMK.
-Confirm and close the dialog.
-⚠️ [Checkpoint] — “Encryption: Enabled” is displayed in the wizard summary.
-Step 5 – Finish
-• Review the summary → Finish.
-• Wait for the “Backup repository successfully created” status.
-⚠️ [Checkpoint] — New repository shows “Encrypted” column = Yes.
-
-Update or create Backup Policies
-• Edit existing policies (or create new ones) and point them to the newly encrypted repository.
-• Save and run the policy to produce encrypted backup chains.
-
-Import into Veeam Backup & Replication (optional)
-• In VBR, open Inventory → External Repositories → Add Repository.
-• Provide VB-AWS appliance address and credentials.
-• Select the encrypted repository; VBR will prompt for the same password or detect the KMS key automatically (if VBR proxy has IAM permissions).
-⚠️ [Checkpoint] — Repository appears under External Repositories; backups are listed but remain encrypted at rest.
-
-![Troubleshooting]
-• “KMS key not found” — Verify CMK Region and IAM permissions (kms:ListKeys, kms:DescribeKey).
-• Policy fails with “AccessDeniedException: KMS” — Ensure the CMK is enabled and not in PendingDeletion state.
-• Forgot the password? — Data is unrecoverable without the original password; open a Support ticket but be prepared for destructive re-seeding.
-
-Frequently Asked Questions
-Q: Can I turn encryption on later for an existing, non-encrypted repository?
-A: Yes. Edit the repository → Encryption → Enable and run new backups. Existing unencrypted files stay unencrypted; only new backup chains use encryption. (Ref: “Editing Backup Repository Settings”)
-
-Q: Does VBR need the password every time?
-A: Only once per console session. VBR caches the key in RAM for that session.
-
-Q: Is client-side encryption compatible with S3 Server-Side Encryption?
-A: Yes; VB-AWS performs its own AES-256 encryption before sending data to S3, regardless of any server-side encryption you may have enabled at the bucket level.
+**Procedure**
+1. In the VB-AWS web UI, open **Configuration → Repositories** and click **Add**.
+   > ✅ **Checkpoint**: The Add Repository wizard opens on the Name step.
+2. **Name:** enter a repository name and optional description → Next.
+   > ✅ **Checkpoint**: The wizard advances with no validation error.
+3. **Repository Settings:** select the IAM role, the S3 bucket, a new or existing folder, and the storage class → Next.
+   > ✅ **Checkpoint**: Role, bucket, folder and storage class are shown in the wizard summary pane.
+4. **Encryption:** switch **Enable encryption** on, then choose ONE method:
+   - *Password* — enter the password and hint.
+   - *AWS KMS key* — pick the key from the list. Only symmetric keys in the bucket's Region that the IAM role can access are listed.
+   > ⚠️ Once a repository is created with encryption enabled you cannot disable it later; you can only edit the settings.
+   > ✅ **Checkpoint**: The summary shows encryption enabled with the method you chose.
+5. **Finish:** review the summary → Finish.
+   > ✅ **Checkpoint**: The repository is listed under Configuration → Repositories with encryption enabled.
+6. Edit each backup policy that should use it (**Policies → Edit → Target repository**), save, and run the policy.
+   > ✅ **Checkpoint**: The policy session completes and restore points appear under the encrypted repository.
+7. *(Optional)* In VBR 11a: **Backup Infrastructure → External Repositories → Add External Repository → Veeam Backup for AWS**. Select the appliance and the repository. At the Encryption step choose (or add via *Manage passwords*) the same password. KMS-encrypted repositories need no password; the key is displayed and decryption is handled through the IAM role.
+   > ✅ **Checkpoint**: The repository appears under External Repositories and its restore points are listed under Home → Backups → External.
 
 **Verification**
-- PowerShell: `Get-BackupJob -Name "JobName" | Select EncryptionEnabled` → should return `True`
-- Event ID 1234 in Application log: "Encryption enabled for job [JobName]"
+- VB-AWS: Configuration → Repositories → the repository shows encryption enabled and the configured password/KMS key.
+- VB-AWS: edit the repository — the Enable encryption toggle is on and cannot be switched off (documented behavior).
+- VBR: restore points from the external repository can be browsed; a wrong password raises a decryption error instead of listing data.
+- VBR PowerShell (optional): `Get-VBRExternalRepository -Name "<repo>" | Format-List *` and inspect the returned object. Property names vary by build; confirm against the PowerShell reference for your version before scripting on them.
 
-Sources:
-Veeam Help Center – “Step 4. Enable Data Encryption” (Veeam Backup for AWS 4.0)
-https://helpcenter.veeam.com/archive/vbaws/40/guide/repositories_add_encryption.html
-Veeam Help Center – “Backup Repository Encryption” (Veeam Backup for AWS 4.0)
-https://helpcenter.veeam.com/archive/vbaws/40/guide/encryption_repository_level.html
+**Troubleshooting**
+- KMS key not listed in the wizard → key is in another Region, is asymmetric, is an AWS managed key, or the repository IAM role lacks access in the key policy.
+- Policy fails after the key was disabled or scheduled for deletion → re-enable the key or change the repository encryption settings. VB-AWS warns on a key pending deletion and gives 7 days to act.
+- Enabled encryption on a previously unencrypted repository → allowed; the next backup in each chain is a full backup rather than an incremental.
+- Lost password → unrecoverable; open a Veeam support case and plan to re-seed.
+
+**Not documented in the archived sources (so not asserted here):** exact column labels in the repository grid, any in-memory key-caching behavior in VBR, Windows event IDs. For undocumented behavior open a Veeam support case rather than guessing.
+
+**Sources (Tier 1)**
+- Veeam Backup for AWS 4.0 User Guide (archived) — sections "Adding Backup Repositories" (Step 4. Enable Data Encryption), "Backup Repository Encryption", "Editing Backup Repository Settings", "Repository IAM Permissions": https://helpcenter.veeam.com/archive/vbaws/40/guide/
+- Same sections in the current guide, used to cross-check behavior statements: https://helpcenter.veeam.com/docs/vbaws/guide/repositories_add_encryption.html · https://helpcenter.veeam.com/docs/vbaws/guide/encryption_repository_level.html · https://helpcenter.veeam.com/docs/vbaws/guide/repositories_edit.html
+- Veeam KB4361 — Build Numbers and Versions of Veeam Backup for AWS: https://www.veeam.com/kb4361
+- Veeam KB4211 — Release Information for Veeam Backup for AWS v4/v4a (VBR 11a integration requirement): https://www.veeam.com/kb4211
+- VBR User Guide — "Platform Support: Amazon Web Services" (appliance ↔ VBR build matrix): https://helpcenter.veeam.com/docs/vbr/userguide/platform_support_aws.html
 ```
+
+*(Exact version and build, dated validation, requirements first, one observable checkpoint per step, a verification section that tests rather than asserts, an explicit "not documented" list, and sources the reader can open.)*
 
 ---
 
@@ -319,6 +342,11 @@ https://helpcenter.veeam.com/archive/vbaws/40/guide/encryption_repository_level.
 │   ├── veeamGPT-5.6Sol.md         ← GPT-5.6 Sol-tailored Veeam reference (not MIT)
 │   ├── yaragenerator.md           ← YARA rule generator & cross-platform integration
 │   └── yaragenerator-5.6Sol.md    ← GPT-5.6 Sol-tailored YARA rule generator
+├── .claude/
+│   ├── CLAUDE.md                  ← Operating manual for AI-assisted maintenance
+│   └── skills/                    ← preflight, new-example, sync-template, red-team, azureAI-optimize
+├── .codex/                        ← Codex-native mirror of the skills + Python audit script
+├── .github/workflows/             ← CI: placeholder audit, Gitleaks, DevSkim (blocking); markdownlint, lychee (advisory)
 └── LICENSE                        ← MIT License (scoped — see above)
 ```
 
@@ -326,9 +354,12 @@ https://helpcenter.veeam.com/archive/vbaws/40/guide/encryption_repository_level.
 
 ## Contributing
 
-Issues and PRs are welcome! Focus areas:
-- **Domain examples**: Healthcare, legal, finance, manufacturing
-- **Integration guides**: AWS Bedrock, Google Vertex AI, LangChain
+Issues and PRs are welcome! Every PR must pass the blocking CI gates (placeholder audit,
+Gitleaks, DevSkim); run `bash .claude/skills/preflight/check.sh .` locally first. New examples
+go through `/new-example <domain>` so the README structure list, license scope and version
+history move in the same commit. Focus areas:
+- **Domain examples**: Healthcare, finance, education, public sector (legal, manufacturing and LangChain are covered — extend them instead)
+- **Integration guides**: AWS Bedrock, Google Vertex AI, Azure AI Foundry Agent Service
 - **Testing strategies**: Automated validation of instruction adherence
 - **Localization**: Non-English versions with cultural/regulatory adjustments
 
@@ -354,6 +385,7 @@ AI agent instructions based on the [Universal AI Agent Safety Template](https://
 
 ## Version History
 
+- **v1.15** (Oct 2026): Rewrote the README "Before vs. After" encryption example against Veeam Backup for AWS 4.0 / VBR 11a sources (removed fabricated wizard step, cmdlet, event ID and VBR 12 pairing; added dated validation, documented KMS constraints and verifiable sources); completed the placeholder inventory to all 24 TEMPLATE.md tokens; replaced the retired OpenAI Assistants API snippet with the Responses API; fixed the duplicated Quick Start step number; added tooling directories to the structure list; fixed the preflight C6 filename regex that false-flagged `-5.6Sol.md` files; aligned CLAUDE.md and the sync-template skill with the current 19-file `examples/` tree
 - **v1.14** (Aug 2026): Added `examples/manufacturing-iot.md` for evidence-driven manufacturing IoT operations, OT safety, read-only diagnostics, approval-gated changes, and escalation
 - **v1.13** (Jul 2026): Added ChatGPT Enterprise personal-agent workspace, RBAC, connector, and evidence boundaries to every GPT-5.6 Sol example and documented a least-privilege Enterprise deployment path
 - **v1.12** (Jul 2026): Added a GPT-5.6 Sol-tailored `-5.6Sol.md` counterpart for every deployable example while retaining the complete o3-focused set

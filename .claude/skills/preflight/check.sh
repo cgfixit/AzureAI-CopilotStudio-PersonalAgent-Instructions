@@ -135,12 +135,13 @@ for f in "$ROOT"/examples/*.md; do
   fi
 done
 # (b) every *.md filename the README mentions exists on disk, case-exact
+#     (regex mirrors README_NAME_RE in .codex/scripts/repo_audit.py — dotted names like -5.6Sol.md must survive)
 while IFS= read -r name; do
   [ -e "$ROOT/$name" ] || [ -e "$ROOT/examples/$name" ] || {
     fail "README.md references '$name' but no such file exists (root or examples/)"
     C6_BAD=1
   }
-done < <(grep -oP '[A-Za-z0-9&_-]+\.md' "$ROOT/README.md" | sort -u)
+done < <(grep -oP '(?<![A-Za-z0-9&_.-])[A-Za-z0-9&][A-Za-z0-9&_.-]*\.md' "$ROOT/README.md" | sort -u)
 [ "$C6_BAD" -eq 0 ] && pass "README, examples/ and license block agree"
 
 # ── C7. Markdown lint (INFORMATIONAL — CI job is non-blocking by design) ────

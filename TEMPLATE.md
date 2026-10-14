@@ -225,6 +225,7 @@ For a company focused on cloud infrastructure tools:
 ---
 
 ## Version History
+- **v1.4** (Jun 2026): Added the optional Reasoning Protocol and Response Modes sections for reasoning models (o3, o4-mini); placeholder set grew to 24 tokens. (Entry recorded in README at the time; added here to keep both histories aligned.)
 - **v1.2** (Dec 2025): Fixed checkpoint syntax, added Azure "on your data" grounding rule, normalized quotes, added audit/logging reminder, improved example formatting.
 - **v1.1** (Dec 2025): Merged lean precision with comprehensive guidance; added mode switching, ethical rails, and Tool & Data Access section*?
 - **v1.0** (Nov 2025): Initial production version, based on an internal deployment; later generalized by removing company-specific language for template use.
