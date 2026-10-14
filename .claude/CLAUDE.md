@@ -29,15 +29,18 @@ deduplicate, or restyle them. Sole maintainer and reviewer: **@cgfixit** (Chris 
 
 ### The examples and their dialects
 
-The 7 examples fall into 4 structural **dialects**. Dialect variation is deliberate
-and frozen; know which one you are editing:
+`examples/` holds 19 files: 10 base examples plus a `-5.6Sol.md` counterpart for 9 of
+them (GPT-5.6 Sol variants; `manufacturing-iot.md` has none yet). They fall into 5
+structural **dialects**. Dialect variation is deliberate and frozen; know which one you
+are editing:
 
 | Dialect | Files | Signature |
 |---|---|---|
-| TEMPLATE-faithful | `incident-response.md` | Headings mirror TEMPLATE.md nearly 1:1. The canonical shape for new examples. |
+| TEMPLATE-faithful | `incident-response.md`, `legal-compliance.md`, `langchain-agents.md`, `manufacturing-iot.md` | Headings mirror TEMPLATE.md nearly 1:1 (`## Purpose & Core Mission` … `## Response Modes`). The canonical shape for new examples. |
 | Coder/KB family | `ps1AgentCoder.md`, `pythonAgentCoder.md`, `yaragenerator.md` | "Mandatory Output Templates A/B", tiers named "Ground truth / Strong patterns / Advisory", `#`-comment header. |
 | Narrative-tiered | `cloud-infra.md`, `veeamGPT.md` | "Sources to Use With High Authority", "Tutorial Creation Protocol", `<checkpoint>` syntax instead of `> ✅ **Checkpoint**:`. |
 | Numbered outlier | `Network&SecurityAgent.md` | Sections numbered 1–13, tier hierarchy as a table, partly non-standard markdown. |
+| Sol variant | every `*-5.6Sol.md` | Lean, outcome-first policies for GPT-5.6 Sol; no o3 reasoning checklist; adds an Enterprise personal-agent boundary section. Maintained via `.codex/skills/sol-optimize/`, never by re-skeletoning to the base file. |
 
 ### The sync triangle
 
@@ -125,7 +128,7 @@ Added by this manual — also follow them:
 | 2 | Leaving `[UPPER_SNAKE]` tokens in an example | Run preflight before committing; C1 is byte-identical to the CI gate that will reject you. |
 | 3 | "Fixing" `[Image: …]`, `[ ]`, `![Warning]`, `[DATE]`, `~[X]%` as leftover placeholders | They are structural syntax on the CI exclusion list (§3). Leave them. |
 | 4 | "Improving" safety prose — softening "Never/Zero Tolerance", deduplicating repeated warnings, tightening "verbose" rules | Repetition and absolutism are deliberate prompt engineering. Do not rewrite language you weren't asked to change. |
-| 5 | Adding MIT headers to files, or assuming repo-wide MIT | License scope lives **only** in the README block: MIT = `TEMPLATE.md`, `cloud-infra.md`, `ps1AgentCoder.md`, `yaragenerator.md`, `incident-response.md`. Everything else (notably `veeamGPT.md`, `pythonAgentCoder.md`, `Network&SecurityAgent.md`) is reference-only. Never add license headers inside files. |
+| 5 | Adding MIT headers to files, or assuming repo-wide MIT | License scope lives **only** in the README block. As of v1.15 everything in `examples/` is MIT **except** `veeamGPT.md` and `veeamGPT-5.6Sol.md` (reference-only). Read the README block rather than trusting this row. Never add license headers inside files. |
 | 6 | Committing a realistic-looking secret in an illustrative snippet | Gitleaks scans **every commit in history** — a leak is permanent and fails CI forever; fixing requires a history rewrite. Only structurally fake values: `your-api-key-here`, `support@example.com`, `<YOUR_TOKEN>`. |
 | 7 | Pasting chat-session output into a deliverable, trailer and all | Instruction files must read as system prompts end-to-end. No "Done. Paste this…", "Let me know if…", "Here's the updated…". (This actually happened — `Network&SecurityAgent.md` shipped with a chat trailer until v1.6.) Preflight C4 scans for it. |
 | 8 | "Fixing" `veeamGPT.md`'s `#REDACTED` URLs, `PLACHOLDER` typos, `REDACTED@REDACTED.com` | Intentional sanitization of a reference-only file. Do not restore real URLs/emails, and do not imitate the pattern in new files. |
@@ -237,7 +240,7 @@ the ask-first list; record the open question in the PR body instead of deciding 
 |---|---|---|
 | `/preflight` | Before **every** commit touching a `.md` file | Local mirror of all blocking CI gates; exit 0 = CI-safe |
 | `/new-example <domain>` | Adding a domain example | Research → scaffold → license → sync triangle → preflight |
-| `/sync-template` | After any TEMPLATE.md contract change | Per-dialect propagation to all 7 examples + both version histories + report |
+| `/sync-template` | After any TEMPLATE.md contract change | Per-dialect propagation to every example + both version histories + report |
 | `/red-team <examples/file.md>` | Before deploying / after major edits to an example | Fixed 35-probe adversarial battery with hard pass gates |
 | `/azureAI-optimize` | Periodic whole-repo improvement pass | analyze.sh findings → categorized fixes → preflight |
 

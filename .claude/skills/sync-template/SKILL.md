@@ -5,7 +5,7 @@ description: Propagate a TEMPLATE.md change to all examples in each file's own d
 
 # Sync Template — propagate a TEMPLATE.md change across the library
 
-TEMPLATE.md is the canonical source; the 7 examples are its instantiations. When
+TEMPLATE.md is the canonical source; the examples (19 files — see the dialect table in CLAUDE.md §2) are its instantiations. When
 the shared contract changes, every example needs the change *in its own dialect* —
 this is the multi-hour chore behind release v1.4 ("Added o3 Reasoning Protocol to
 TEMPLATE.md and all examples"), systematized.
@@ -31,10 +31,11 @@ Dialect variation is frozen (see CLAUDE.md). Propagate *content*, never structur
 
 | Dialect | Files | Insertion guidance |
 |---|---|---|
-| TEMPLATE-faithful | `incident-response.md` | Headings mirror TEMPLATE.md — insert in the same relative position with near-identical heading text. |
+| TEMPLATE-faithful | `incident-response.md`, `legal-compliance.md`, `langchain-agents.md`, `manufacturing-iot.md` | Headings mirror TEMPLATE.md — insert in the same relative position with near-identical heading text. |
 | Coder/KB family | `ps1AgentCoder.md`, `pythonAgentCoder.md`, `yaragenerator.md` | Rules go in their rules sections (Forbidden Actions, Behavioral Rules, Reasoning Protocol) — never inside "Mandatory Output Templates A/B", which are the agent's *output* formats. `#`-comment header block, "Ground truth / Strong patterns / Advisory" tier names. |
 | Narrative-tiered | `cloud-infra.md`, `veeamGPT.md` | Sections are prose-heavy with renamed headings ("Sources to Use With High Authority", "Tutorial Creation Protocol") and `<checkpoint>` syntax instead of `> ✅ **Checkpoint**:`. Insert under the analogous renamed heading; keep their checkpoint syntax. |
 | Numbered outlier | `Network&SecurityAgent.md` | Sections are `N. Title` numbered 1-13. Append content *within* the closest existing numbered section — do not renumber 13 headings for one insertion. Tier hierarchy is a table; edit rows, not headings. |
+| Sol variant | every `*-5.6Sol.md` | Propagate the *rule*, not o3 scaffolding: Sol files have no Reasoning Protocol checklist by design. State each rule once in the matching policy section; keep the Enterprise boundary section intact. |
 
 `veeamGPT.md` is reference-only (non-MIT) but **in maintenance scope** — license ≠
 maintenance. Propagate to it too; just never "fix" its `#REDACTED`/`PLACHOLDER`
@@ -87,7 +88,7 @@ Put this table in the commit body or PR description:
 | ... | | |
 ```
 
-Every one of the 7 examples appears — "applied", "adapted", or "SKIPPED: reason".
+Every file in `examples/` appears — "applied", "adapted", or "SKIPPED: reason".
 No silent omissions.
 
 ## Step 7: Validate
