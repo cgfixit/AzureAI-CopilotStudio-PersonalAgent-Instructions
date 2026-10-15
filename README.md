@@ -306,7 +306,10 @@ Clarification resolved: "v4.0" taken as Veeam Backup for AWS 4.0 (build 4.0.0.74
 **Not documented in the archived sources (so not asserted here):** exact column labels in the repository grid, any in-memory key-caching behavior in VBR, Windows event IDs. For undocumented behavior open a Veeam support case rather than guessing.
 
 **Sources (Tier 1)**
-- Veeam Backup for AWS 4.0 User Guide (archived) — sections "Adding Backup Repositories" (Step 4. Enable Data Encryption), "Backup Repository Encryption", "Editing Backup Repository Settings", "Repository IAM Permissions": https://helpcenter.veeam.com/archive/vbaws/40/guide/
+- Veeam Backup for AWS 4.0 User Guide (archived) — "Step 4. Enable Data Encryption": https://helpcenter.veeam.com/archive/vbaws/40/guide/repositories_add_encryption.html
+- Veeam Backup for AWS 4.0 User Guide (archived) — "Backup Repository Encryption": https://helpcenter.veeam.com/archive/vbaws/40/guide/encryption_repository_level.html
+- Veeam Backup for AWS 4.0 User Guide (archived) — "Editing Backup Repository Settings": https://helpcenter.veeam.com/archive/vbaws/40/guide/repositories_edit.html
+- Veeam Backup for AWS 4.0 User Guide (archived) — "Repository IAM Permissions": https://helpcenter.veeam.com/archive/vbaws/40/guide/role_permissions_repo.html
 - Same sections in the current guide, used to cross-check behavior statements: https://helpcenter.veeam.com/docs/vbaws/guide/repositories_add_encryption.html · https://helpcenter.veeam.com/docs/vbaws/guide/encryption_repository_level.html · https://helpcenter.veeam.com/docs/vbaws/guide/repositories_edit.html
 - Veeam KB4361 — Build Numbers and Versions of Veeam Backup for AWS: https://www.veeam.com/kb4361
 - Veeam KB4211 — Release Information for Veeam Backup for AWS v4/v4a (VBR 11a integration requirement): https://www.veeam.com/kb4211
@@ -385,7 +388,7 @@ AI agent instructions based on the [Universal AI Agent Safety Template](https://
 
 ## Version History
 
-- **v1.15** (Oct 2026): Rewrote the README "Before vs. After" encryption example against Veeam Backup for AWS 4.0 / VBR 11a sources (removed fabricated wizard step, cmdlet, event ID and VBR 12 pairing; added dated validation, documented KMS constraints and verifiable sources); completed the placeholder inventory to all 24 TEMPLATE.md tokens; replaced the retired OpenAI Assistants API snippet with the Responses API; fixed the duplicated Quick Start step number; added tooling directories to the structure list; fixed the preflight C6 filename regex that false-flagged `-5.6Sol.md` files; aligned CLAUDE.md and the sync-template skill with the current 19-file `examples/` tree
+- **v1.15** (Oct 2026): Rewrote the README "Before vs. After" encryption example against Veeam Backup for AWS 4.0 / VBR 11a sources (removed fabricated wizard step, cmdlet, event ID and VBR 12 pairing; added dated validation, documented KMS constraints and verifiable sources); completed the placeholder inventory to all 24 TEMPLATE.md tokens; replaced the retired OpenAI Assistants API snippet with the Responses API; fixed the duplicated Quick Start step number; added tooling directories to the structure list; fixed the preflight C6 filename regex that false-flagged `-5.6Sol.md` files; aligned CLAUDE.md and the sync-template skill with the current 19-file `examples/` tree; follow-up: example now cites the exact archived 4.0 pages instead of the guide root
 - **v1.14** (Aug 2026): Added `examples/manufacturing-iot.md` for evidence-driven manufacturing IoT operations, OT safety, read-only diagnostics, approval-gated changes, and escalation
 - **v1.13** (Jul 2026): Added ChatGPT Enterprise personal-agent workspace, RBAC, connector, and evidence boundaries to every GPT-5.6 Sol example and documented a least-privilege Enterprise deployment path
 - **v1.12** (Jul 2026): Added a GPT-5.6 Sol-tailored `-5.6Sol.md` counterpart for every deployable example while retaining the complete o3-focused set
